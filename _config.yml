@@ -1,0 +1,67 @@
+#======================================================
+# PENGATURAN SITUS UTAMA
+#======================================================
+# Informasi dasar yang digunakan di seluruh situs.
+# Dapat diakses menggunakan {{ site.title }}, {{ site.description }}, dll.
+
+title: PKC PMII Bali Nusra
+email: pmiibalinusra.official@gmail.com
+description: >- # Tanda >- mengabaikan baris baru, bagus untuk deskripsi panjang.
+  Website Resmi Pengurus Koordinator Cabang (PKC) Pergerakan Mahasiswa Islam Indonesia (PMII) Bali-Nusa Tenggara.
+  Mendorong inovasi dan pergerakan mahasiswa yang berlandaskan Ahlussunnah wal Jama'ah.
+
+# URL lengkap situs Anda untuk produksi.
+url: "https://pmiibalinusra.or.id" 
+# Biarkan kosong karena situs berada di root domain.
+baseurl: "" 
+
+#======================================================
+# PENGATURAN MEDIA SOSIAL
+#======================================================
+# Mendefinisikan link media sosial di satu tempat agar mudah diubah.
+# Dapat diakses menggunakan {{ site.social.youtube }}, dll.
+
+social:
+  youtube: https://youtube.com/@pkcpmiibalinusra
+  facebook: https://facebook.com/pkcpmiibalinusatenggara
+  instagram: https://instagram.com/pkc.pmiibalinusra
+
+#======================================================
+# PENGATURAN BUILD
+#======================================================
+
+# Karena Anda menggunakan layout HTML kustom dengan Tailwind CSS,
+# tema Jekyll (seperti Minima) tidak diperlukan dan sebaiknya dinonaktifkan 
+# untuk menghindari konflik style. `theme: null` adalah cara terbaik.
+theme: null
+
+# Plugin yang digunakan untuk fungsionalitas tambahan.
+plugins:
+  # Membuat feed RSS secara otomatis di /feed.xml untuk pelanggan berita.
+  - jekyll-feed
+  # SANGAT DIREKOMENDASIKAN: Membuat tag meta SEO (title, description, 
+  # canonical URL, Open Graph) secara otomatis untuk setiap halaman. 
+  # Ini lebih baik daripada menulisnya manual di setiap file.
+  - jekyll-seo-tag
+
+# Aturan untuk membuat URL postingan yang rapi dan SEO-friendly.
+permalink: /rilis/:year/:month/:day/:title.html
+
+#======================================================
+# EXCLUDE (PENGECUALIAN)
+#======================================================
+# Daftar file dan folder yang TIDAK akan diproses oleh Jekyll.
+# Ini penting untuk menjaga kebersihan folder hasil build (_site).
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
