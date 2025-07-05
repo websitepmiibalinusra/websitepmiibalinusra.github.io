@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <!-- Pengaturan Dasar & SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul halaman dinamis dari front matter post -->
+    <title>{{ page.title }} - PKC PMII Bali Nusra</title>
+    <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+    <meta name="keywords" content="PMII, Bali Nusra, PKC PMII, {{ page.title }}">
+
+    <!-- Ikon, Font, dan Library Eksternal -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/8kYbzKq.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Style Kustom -->
+    <style>
+        /* Mengatur font dasar dan anti-aliasing untuk teks yang lebih halus */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #ffffff;
+        }
+        /* Gradient untuk elemen Call-to-Action (CTA) seperti header dan footer */
+        .cta-gradient {
+            background: linear-gradient(90deg, #0973D6, #2918A9);
+        }
+        /* Animasi loading spinner */
+        .spinner {
+            width: 56px;
+            height: 56px;
+            border: 8px solid rgba(255, 255, 255, .3);
+            border-top-color: #FFCB05; /* Warna aksen PMII */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Styling khusus untuk blockquote di dalam konten artikel */
+        .prose blockquote { border-left-color: #0973D6; font-style: italic; }
+        .prose cite { display: block; text-align: right; font-size: .8em; margin-top: .5em; font-style: normal; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- ===== PRELOADER ===== -->
+    <!-- Tampilan loading awal saat halaman dimuat -->
+    <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center cta-gradient">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ===== HEADER & NAVIGASI ===== -->
+    <!-- Header tetap di bagian atas halaman dengan latar belakang gradien -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <!-- Logo, klik tidak mengarahkan ke mana pun -->
+            <a href="#" onclick="event.preventDefault(); return false;">
+                <img src="assets/images/favicon.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12 transition-all">
+            </a>
+            <!-- Navigasi untuk desktop -->
+            <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                <a href="/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
+                <a href="/tentang" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Tentang</a>
+                <a href="/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
+                <a href="rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
+            </nav>
+            <!-- Tombol CTA untuk desktop dengan animasi hover -->
+            <a href="/kta" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Keanggotaan</a>
+            <!-- Tombol menu untuk mobile -->
+            <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
+        </div>
+        <!-- Menu navigasi mobile yang tersembunyi -->
+        <div id="mobile-menu" class="hidden md:hidden cta-gradient">
+            <!-- Link menu mobile dengan animasi hover -->
+            <a href="/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors duration-200">Beranda</a>
+            <a href="/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors duration-200">Tentang</a>
+            <a href="/pengurus" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors duration-200">Pengurus</a>
+            <a href="/rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors duration-200">Rilis</a>
+            <!-- Tombol CTA mobile dengan animasi hover -->
+            <div class="p-4">
+                <a href="/kta" class="block w-full text-center bg-[#FFCB05] text-black px-5 py-3 rounded-full font-bold text-base transition-transform duration-300 hover:scale-105">Keanggotaan</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== KONTEN UTAMA DETAIL RILIS ===== -->
+    <!-- Padding atas (pt-24) untuk memberi ruang di bawah header fixed -->
+    <main class="pt-24 md:pt-28">
+        <!-- Padding vertikal (py) disesuaikan untuk ritme visual yang lebih baik -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <!-- Batasi lebar maksimum artikel untuk keterbacaan optimal -->
+            <article class="max-w-4xl mx-auto">
+                <!-- Header artikel: Judul, tanggal, dan penulis -->
+                <header class="mb-10 md:mb-12 text-center">
+                    <div class="flex justify-between items-center mb-4">
+                        <!-- Link kembali ke halaman daftar rilis -->
+                        <a href="/rilis" class="text-sm text-[#0973D6] hover:underline flex items-center gap-1">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i> Rilis
+                        </a>
+                        <!-- Tanggal rilis dari front matter -->
+                        <p class="text-sm text-gray-500">{{ page.date | date: "%d %B %Y" }}</p>
+                    </div>
+                    <!-- Judul rilis dengan ukuran font responsif (lg, base) -->
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight md:leading-tight">{{ page.title }}</h1>
+                    <!-- Menampilkan nama penulis jika ada di front matter -->
+                    {% if page.author %}
+                        <p class="mt-4 text-base text-gray-600">Oleh: <span class="font-semibold">{{ page.author }}</span></p>
+                    {% endif %}
+                </header>
+
+                <!-- Gambar utama rilis (jika ada) -->
+                {% if page.image %}
+                <figure class="mb-8 overflow-hidden rounded-xl shadow-lg">
+                    <img src="{{ page.image }}" class="w-full h-auto object-cover" alt="{{ page.image_caption | default: page.title }}" loading="lazy">
+                </figure>
+                <!-- Keterangan gambar (jika ada) -->
+                {% if page.image_caption %}
+                    <figcaption class="text-center text-xs sm:text-sm text-gray-500 -mt-6 mb-8">{{ page.image_caption }}</figcaption>
+                {% endif %}
+                {% endif %}
+
+                <!--
+                  ===== KONTEN MARKDOWN DITAMPILKAN DI SINI =====
+                  Blok ini adalah tempat di mana seluruh isi file Markdown (.md) Anda akan secara otomatis ditampilkan.
+                  Kelas 'prose' dari Tailwind CSS akan menata format teks, judul, daftar, dan elemen lainnya dengan rapi.
+                -->
+                <div class="prose prose-sm sm:prose-base lg:prose-lg max-w-none leading-relaxed">
+                    {{ content }}
+                </div>
+
+                <!-- Tombol Bagikan -->
+                <div class="mt-12 lg:mt-16 pt-8 border-t">
+                    <h3 class="text-lg font-bold text-center mb-4 text-gray-900">Bagikan</h3>
+                    <div id="share-buttons-detail" class="flex justify-center items-center gap-4 flex-wrap"></div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="kontak" class="cta-gradient text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+            <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
+            <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan.</p>
+            <!-- Gambar screenshot aplikasi tanpa bayangan -->
+            <div class="mb-12 flex justify-center">
+                <img src="assets/images/aplikasi.png" alt="Tangkapan layar aplikasi Permaisindo" class="h-auto max-h-[400px] md:max-h-[500px] rounded-2xl" loading="lazy">
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <!-- Tombol footer dengan animasi hover -->
+                <a href="/koleksi" class="bg-[#FFCB05] text-black px-8 py-3 rounded-full font-bold text-base shadow-lg w-full sm:w-auto transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Produk Pergerakan</a>
+                <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-[#FFCB05] text-[#FFCB05] px-8 py-3 rounded-full font-bold text-base w-full sm:w-auto transition-all duration-300 hover:bg-[#FFCB05] hover:text-black hover:scale-105 hover:-translate-y-0.5">Download Aplikasi</a>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
+                <div class="max-w-sm">
+                    <h3 class="text-lg font-semibold text-white mb-4">Alamat</h3>
+                    <p class="text-sm text-white/80">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Media Sosial</h3>
+                    <div class="flex justify-center md:justify-start space-x-4 mt-2">
+                        <a href="https://youtube.com/@pkcpmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                        <a href="https://facebook.com/pkcpmiibalinusatenggara" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="https://instagram.com/pkc.pmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-white/20 text-center text-white/60 text-sm">
+                <p>&copy; <span id="year"></span> PKC PMII Bali Nusra.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Fungsi utama yang dijalankan setelah halaman dimuat ---
+
+        // Menghilangkan preloader dengan efek fade out
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            setTimeout(() => {
+                preloader.style.transition = "opacity .5s ease";
+                preloader.style.opacity = "0";
+                preloader.addEventListener("transitionend", () => preloader.style.display = "none");
+            }, 500);
+        }
+
+        // Logika untuk menampilkan/menyembunyikan menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+        }
+
+        // Mengatur tahun copyright di footer secara dinamis
+        const yearSpan = document.getElementById('year');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+        
+        // Menginisialisasi semua ikon dari library Lucide
+        lucide.createIcons();
+
+        // Fungsi untuk menampilkan notifikasi (misal: "Link disalin")
+        function showNotification(message, type = "success") {
+            const notification = document.createElement("div");
+            const bgColor = type === "success" ? "bg-green-500" : "bg-red-600";
+            notification.className = `fixed bottom-5 right-5 text-white text-sm py-3 px-5 rounded-lg shadow-xl z-[101] transition-all duration-300 transform translate-y-10 opacity-0 ${bgColor}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.classList.remove("translate-y-10", "opacity-0");
+            }, 10);
+            setTimeout(() => {
+                notification.classList.add("opacity-0");
+                notification.addEventListener("transitionend", () => notification.remove());
+            }, 3000);
+        }
+
+        // Fungsi untuk membuat tombol-tombol bagikan
+        function createShareButtons(container, url, text) {
+            const shareText = `Simak rilis terbaru: "${text}"`;
+            const platforms = [
+                { name: "WhatsApp", icon: "message-circle", type: "lucide", color: "bg-green-500", href: `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + url)}`, action: 'share' },
+                { name: "X", icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231L18.244 2.25zM17.5 19.5h1.5l-8.5-11.25h-1.6l8.6 11.25z"></path></svg>`, type: "svg", color: "bg-black", href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`, action: 'share' },
+                { name: "Facebook", icon: "facebook", type: "lucide", color: "bg-blue-800", href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, action: 'share' },
+                { name: "Copy Link", icon: "link", type: "lucide", color: "bg-gray-500", href: "#", action: 'copy' }
+            ];
+            
+            container.innerHTML = platforms.map(p => {
+                let title = p.action === 'copy' ? `Salin link untuk dibagikan` : `Bagikan ke ${p.name}`;
+                let iconHtml = p.type === 'svg' ? p.icon : `<i data-lucide="${p.icon}" class="w-5 h-5"></i>`;
+                return `<a href="${p.href}" class="share-button ${p.color} text-white w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110" title="${title}" data-action="${p.action}" data-platform="${p.name}">${iconHtml}</a>`;
+            }).join("");
+            
+            container.querySelectorAll('.share-button').forEach(button => {
+                button.addEventListener("click", event => {
+                    if (button.dataset.action === 'copy') {
+                        event.preventDefault();
+                        // Menggunakan metode modern 'navigator.clipboard' jika tersedia
+                        if (navigator.clipboard) {
+                            navigator.clipboard.writeText(url).then(() => {
+                                showNotification(`Link berhasil disalin!`);
+                            }, () => {
+                                showNotification('Gagal menyalin link.', 'error');
+                            });
+                        } else {
+                            // Fallback untuk browser lama
+                            try {
+                                const textarea = document.createElement('textarea');
+                                textarea.value = url;
+                                document.body.appendChild(textarea);
+                                textarea.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(textarea);
+                                showNotification(`Link berhasil disalin!`);
+                            } catch (err) {
+                                showNotification('Gagal menyalin link.', 'error');
+                            }
+                        }
+                    } else {
+                        // Membuka jendela popup untuk berbagi
+                        event.preventDefault();
+                        window.open(button.href, 'share-window', 'height=450, width=550, top=' + (screen.height / 2 - 225) + ', left=' + (screen.width / 2 - 275) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+                    }
+                });
+            });
+            lucide.createIcons(); // Inisialisasi ulang ikon setelah menambahkannya ke DOM
+        }
+
+        // Menjalankan fungsi untuk membuat tombol bagikan di kontainer yang ditentukan
+        const shareContainer = document.getElementById('share-buttons-detail');
+        if (shareContainer) {
+            createShareButtons(shareContainer, '{{ page.url | absolute_url }}', '{{ page.title | escape }}');
+        }
+    });
+    </script>
+</body>
+</html>
