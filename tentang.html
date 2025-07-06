@@ -1,0 +1,192 @@
+---
+# Front matter ini penting agar Jekyll memproses halaman ini
+layout: default
+title: Tentang
+---
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <!-- Pengaturan Dasar & SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - PKC PMII Bali Nusra</title>
+    <meta name="description" content="Sejarah, visi, misi, dan nilai-nilai Pergerakan Mahasiswa Islam Indonesia (PMII) serta peran strategis PKC PMII Bali-Nusa Tenggara.">
+    <meta name="keywords" content="Tentang PMII, Sejarah PMII, Visi Misi PMII, PMII Bali Nusra, Pergerakan Mahasiswa">
+
+    <!-- Ikon, Font, dan Library Eksternal -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Style Kustom -->
+    <style>
+        /* Mengatur font dasar dan latar belakang utama */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #ffffff; /* Latar belakang dipastikan putih */
+        }
+        /* Gradient untuk elemen Call-to-Action (CTA) */
+        .cta-gradient {
+            background: linear-gradient(90deg, #0973D6, #2918A9);
+        }
+        /* Animasi loading spinner */
+        .spinner {
+            width: 56px;
+            height: 56px;
+            border: 8px solid rgba(255, 255, 255, .3);
+            border-top-color: #FFCB05;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Animasi untuk elemen saat di-scroll */
+        @keyframes slideInFromBottom { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .animate-on-scroll {
+            opacity: 0;
+        }
+        .animate-slide-in-bottom {
+            animation: slideInFromBottom .6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- ===== PRELOADER ===== -->
+    <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center cta-gradient">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ===== HEADER & NAVIGASI ===== -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <!-- Logo, link ke halaman utama -->
+                <img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12">
+            <!-- Navigasi Desktop -->
+            <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                <a href="/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
+                <a href="/tentang" class="text-[#FFCB05] text-sm font-bold">Tentang</a>
+                <a href="/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
+                <a href="/rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
+            </nav>
+            <!-- Tombol CTA Desktop -->
+            <a href="/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Kartu</a>
+            <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
+        </div>
+        <!-- Navigasi Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden cta-gradient">
+            <a href="/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
+            <a href="/tentang" class="block text-center py-3 px-6 text-[#FFCB05] font-bold text-base bg-white/10">Tentang</a>
+            <a href="/pengurus" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Pengurus</a>
+            <a href="/rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Rilis</a>
+            <div class="p-4"><a href="/kartu" class="block w-full text-center bg-[#FFCB05] text-black px-5 py-3 rounded-full font-bold text-base transition-transform hover:scale-105">Kartu</a></div>
+        </div>
+    </header>
+
+    <!-- ===== KONTEN UTAMA HALAMAN TENTANG (DIKEMBALIKAN KE AWAL) ===== -->
+    <main class="pt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <!-- Judul Halaman -->
+            <div class="text-center mb-12 md:mb-16 animate-on-scroll">
+                <h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">TENTANG</h3>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900">PMII Bali Nusra</h2>
+            </div>
+            <!-- Video Profil -->
+            <div class="aspect-video mb-12 animate-on-scroll overflow-hidden rounded-2xl shadow-xl">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/AQXKIGKvlgQ?si=Tpz660CY5Li-kpEv" title="Video Profil PMII Bali Nusra" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Paragraf Pertama -->
+            <div class="max-w-4xl mx-auto text-justify text-base leading-relaxed space-y-4 animate-on-scroll">
+                <p>Pergerakan Mahasiswa Islam Indonesia (PMII) adalah organisasi ekstra-kampus berbasis Ahlussunnah wal Jamaah yang didirikan pada 17 April 1960 di Surabaya oleh 13 mahasiswa NU dengan restu. Pembentukannya merupakan respons atas kebutuhan wadah mahasiswa Nahdliyin yang independen, karena sebelumnya mahasiswa NU hanya terwadahi dalam IMANU, KMNU, dan departemen perguruan tinggi IPNU yang tak sepenuhnya mencukupi aspirasi mereka. PMII lahir dari perumusan ide di Kongres IPNU (14–17 Maret 1960) di Kaliurang, yang menetapkan perlunya organisasi mahasiswa NU. Kemudian, pada 14–16 April 1960, di Surabaya dibentuk panitia sponsornya, dan pada 17 April 1960 resmi diumumkan sebagai kelahiran PMII. Landasan organisasi PMII adalah Islam Ahlussunah wal Jamaah. Tujuan utama PMII adalah membentuk pribadi muslim Indonesia yang bertakwa, berbudi pekerti luhur, berilmu, cakap, bertanggung jawab, dan berkomitmen membela cita-cita kemerdekaan. Sejak awal, PMII juga berfungsi sebagai wadah kaderisasi, advokasi sosial, dan kontributor pemikiran intelektual bagi bangsa dan negara. Pada era awal perkembangan, PMII aktif dalam berbagai forum mahasiswa, termasuk KAMI dan KNPI, serta berpartisipasi dalam kampanye pemikiran kritis dan pluralisme, dengan cakupan intelektual modern seperti wacana Karl Popper dan Karl Marx. Seiring perjalanan, PMII sempat deklarasikan independensinya dari NU melalui Deklarasi Murnajati tahun 1972 yang menegaskan identitas organisasi yang mandiri, bukan Badan Otonom. Hingga kini, usia PMII sudah melewati 65 tahun dengan kontribusi pada bidang politik, sosial, budaya, dan pendidikan, serta konsistensi memperkuat peran mahasiswa NU di kancah nasional.</p>
+            </div>
+            <!-- Gambar Infografis -->
+            <div class="my-12 max-w-3xl mx-auto animate-on-scroll overflow-hidden rounded-2xl shadow-xl">
+                <img src="assets/images/ucapan.png" class="w-full h-auto" alt="Infografis Sejarah PMII" loading="lazy">
+            </div>
+            <!-- Paragraf Kedua -->
+            <div class="max-w-4xl mx-auto text-justify text-base leading-relaxed animate-on-scroll">
+                <p>Pergerakan Mahasiswa Islam Indonesia wilayah Bali Nusa Tenggara (PKC PMII Bali Nusra) telah lama menjadi pilar penting gerakan mahasiswa di kawasan Bali, NTB, dan NTT. Sejak awal PKC PMII Bali Nusra menyatukan seluruh cabang dan alumni dalam rangka evaluasi serta merumuskan arah strategis ke depan. PKC fokus mengimplementasikan kaderisasi berbasis digital sebagai langkah ke depan untuk menjawab era transformasi digitalisasi. Pada tahun-tahun berikutnya, organisasi ini aktif mengawal isu lingkungan dan demokrasi, mengecam tindakan represif aparat di Kota Bima (September 2022), serta mendesak penutupan tambang ilegal seperti PT AMNT di Sumbawa Barat (November 2023). Memasuki 2025, PKC Bali Nusra menggelar rangkaian Konkorcab VI, dimulai dengan penetapan calon ketua PKC dan Kopri pada 30 Januari, di mana Badan Pekerja Kongres menetapkan Ahmad Muzakkir sebagai calon Ketua PKC, dan Nurhalifah sebagai calon Ketua Kopri. Pemilihan final berlangsung pada 27 Februari di Grand In Hotel Mataram, menghasilkan terpilihnya Ahmad Muzakkir sebagai Ketua PKC dan Nurhalifah sebagai Ketua Kopri untuk masa khidmat 2025–2027. Kedua figur ini membawa semangat baru dalam kaderisasi, Muzakkir menekankan penguatan distribusi kader di berbagai sektor, sementara Nurhalifah memperkenalkan konsep “Kopri Smart”, memastikan perhatian merata di semua cabang. Dengan kepemimpinan mereka, PKC PMII Bali Nusra memasuki babak transformasi baru, mempertajam kader unggul, digitalisasi inklusif, dan advokasi sosial ekologis yang kritis.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="kontak" class="cta-gradient text-white">
+        <!-- Konten footer sama dengan halaman lain untuk konsistensi -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+            <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
+            <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan Mahasiswa Islam Indonesia.</p>
+            <div class="mb-12 flex justify-center">
+                <img src="assets/images/apk.png" alt="Tangkapan layar aplikasi Permaisindo" class="h-auto max-h-[400px] md:max-h-[500px] rounded-2xl" loading="lazy">
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="/koleksi" class="bg-[#FFCB05] text-black px-8 py-3 rounded-full font-bold text-base shadow-lg w-full sm:w-auto transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Koleksi</a>
+                <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-[#FFCB05] text-[#FFCB05] px-8 py-3 rounded-full font-bold text-base w-full sm:w-auto transition-all duration-300 hover:bg-[#FFCB05] hover:text-black hover:scale-105 hover:-translate-y-0.5">Download Aplikasi</a>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
+                <div class="max-w-sm"><h3 class="text-lg font-semibold text-white mb-4">Alamat</h3><p class="text-sm text-white/80">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p></div>
+                <div><h3 class="text-lg font-semibold text-white mb-4">Media Sosial</h3><div class="flex justify-center md:justify-start space-x-4 mt-2"><a href="https://youtube.com/@pkcpmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a><a href="https://facebook.com/pkcpmiibalinusatenggara" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a><a href="https://instagram.com/pkc.pmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a></div></div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-white/20 text-center text-white/60 text-sm"><p>&copy; <span id="year"></span> PKC PMII Bali Nusra.</p></div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Inisialisasi Elemen ---
+        const preloader = document.getElementById('preloader');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const yearSpan = document.getElementById('year');
+
+        // --- Logika Preloader ---
+        if (preloader) {
+            setTimeout(() => {
+                preloader.style.transition = "opacity .5s ease";
+                preloader.style.opacity = "0";
+                preloader.addEventListener("transitionend", () => preloader.style.display = "none");
+            }, 500);
+        }
+
+        // --- Logika Menu Mobile ---
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+        }
+
+        // --- Set Tahun di Footer ---
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+
+        // --- Fungsi untuk Animasi saat Scroll ---
+        function setupScrollAnimations() {
+            const animatedElements = document.querySelectorAll(".animate-on-scroll");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = `${index * 100}ms`;
+                        entry.target.classList.add("animate-slide-in-bottom");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
+        }
+
+        // --- Inisialisasi Ikon dan Animasi ---
+        lucide.createIcons();
+        setupScrollAnimations();
+    });
+    </script>
+</body>
+</html>
