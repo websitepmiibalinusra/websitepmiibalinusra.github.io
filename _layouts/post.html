@@ -9,7 +9,7 @@
     <meta name="keywords" content="PMII, Bali Nusra, PKC PMII, {{ page.title }}">
 
     <!-- Ikon, Font, dan Library Eksternal -->
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,18 +56,18 @@
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             <!-- Logo -->
-            <img src="{{ site.baseurl }}/assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12">
+            <img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12">
             
             <!-- Navigasi Desktop -->
             <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                <a href="{{ site.baseurl }}/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
-                <a href="{{ site.baseurl }}/tentang" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Tentang</a>
-                <a href="{{ site.baseurl }}/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
-                <a href="{{ site.baseurl }}/rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
+                <a href="/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
+                <a href="/tentang" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Tentang</a>
+                <a href="/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
+                <a href="/rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
             </nav>
             
             <!-- Tombol CTA Desktop -->
-            <a href="{{ site.baseurl }}/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Kartu</a>
+            <a href="/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Kartu</a>
             
             <!-- Tombol Menu Mobile -->
             <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
@@ -75,11 +75,11 @@
         
         <!-- Navigasi Mobile (toggle) -->
         <div id="mobile-menu" class="hidden md:hidden cta-gradient">
-            <a href="{{ site.baseurl }}/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
-            <a href="{{ site.baseurl }}/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
-            <a href="{{ site.baseurl }}/pengurus" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Pengurus</a>
-            <a href="{{ site.baseurl }}/rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Rilis</a>
-            <div class="p-4"><a href="{{ site.baseurl }}/kartu" class="block w-full text-center bg-[#FFCB05] text-black px-5 py-3 rounded-full font-bold text-base transition-transform hover:scale-105">Kartu</a></div>
+            <a href="/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
+            <a href="/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
+            <a href="/pengurus" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Pengurus</a>
+            <a href="/rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Rilis</a>
+            <div class="p-4"><a href="/kartu" class="block w-full text-center bg-[#FFCB05] text-black px-5 py-3 rounded-full font-bold text-base transition-transform hover:scale-105">Kartu</a></div>
         </div>
     </header>
 
@@ -91,7 +91,7 @@
                 <!-- Header Artikel: Judul, tanggal, penulis -->
                 <header class="mb-10 md:mb-12 text-center">
                     <div class="flex justify-between items-center mb-4">
-                        <a href="{{ site.baseurl }}/rilis" class="text-sm text-[#0973D6] hover:underline flex items-center gap-1">
+                        <a href="/rilis" class="text-sm text-[#0973D6] hover:underline flex items-center gap-1">
                             <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Rilis
                         </a>
                         <p class="text-sm text-gray-500">{{ page.date | date: "%d %B %Y" }}</p>
@@ -136,10 +136,10 @@
             <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
             <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan.</p>
             <div class="mb-12 flex justify-center">
-                <img src="{{ site.baseurl }}/assets/images/apk.png" alt="Tangkapan layar aplikasi Permaisindo" class="h-auto max-h-[400px] md:max-h-[500px] rounded-2xl" loading="lazy">
+                <img src="assets/images/apk.png" alt="Tangkapan layar aplikasi Permaisindo" class="h-auto max-h-[400px] md:max-h-[500px] rounded-2xl" loading="lazy">
             </div>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="{{ site.baseurl }}/koleksi" class="bg-[#FFCB05] text-black px-8 py-3 rounded-full font-bold text-base shadow-lg w-full sm:w-auto transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Koleksi</a>
+                <a href="/koleksi" class="bg-[#FFCB05] text-black px-8 py-3 rounded-full font-bold text-base shadow-lg w-full sm:w-auto transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Koleksi</a>
                 <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-[#FFCB05] text-[#FFCB05] px-8 py-3 rounded-full font-bold text-base w-full sm:w-auto transition-all duration-300 hover:bg-[#FFCB05] hover:text-black hover:scale-105 hover:-translate-y-0.5">Download Aplikasi</a>
             </div>
         </div>
