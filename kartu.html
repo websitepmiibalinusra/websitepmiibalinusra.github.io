@@ -20,8 +20,7 @@ title: Kartu
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Library untuk membuat PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Library PDF tidak diperlukan lagi -->
 
     <!-- Style Kustom -->
     <style>
@@ -48,7 +47,7 @@ title: Kartu
     <!-- ===== HEADER & NAVIGASI ===== -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <a href="{{ site.baseurl }}/"><img src="https://i.imgur.com/0CzQrgV.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12"></a>
+            <a href="{{ site.baseurl }}/"><img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12"></a>
             <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <a href="{{ site.baseurl }}/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
                 <a href="{{ site.baseurl }}/tentang" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Tentang</a>
@@ -67,17 +66,17 @@ title: Kartu
         </div>
     </header>
 
-    <!-- ===== KONTEN UTAMA HALAMAN KEANGGOTAAN ===== -->
+    <!-- ===== KONTEN UTAMA HALAMAN KARTU ===== -->
     <main class="pt-24 md:pt-28 pb-16 md:pb-24">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <header class="text-center mb-12 md:mb-16 animate-on-scroll">
                 <h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">KARTU</h3>
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">Tanda Keanggotaan</h1>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">Tanda Anggota</h1>
             </header>
             
             <div class="max-w-2xl mx-auto">
                 <form id="registration-form" class="space-y-6">
-                    <!-- Input fields (sama seperti sebelumnya) -->
+                    <!-- Input fields -->
                     <div class="animate-on-scroll"><label for="nama-lengkap" class="block text-sm font-medium text-gray-700 mb-1.5">Nama Lengkap</label><input type="text" id="nama-lengkap" name="Nama Lengkap" placeholder="Nama Lengkap" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
                     <div class="animate-on-scroll"><label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label><input type="email" id="email" name="Email" placeholder="email@gmail.com" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
                     <div class="animate-on-scroll"><label for="telepon" class="block text-sm font-medium text-gray-700 mb-1.5">Telepon</label><input type="tel" id="telepon" name="Telepon" placeholder="081234567890" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
@@ -102,7 +101,7 @@ title: Kartu
 
     <!-- ===== FOOTER ===== -->
     <footer id="kontak" class="cta-gradient text-white">
-        <!-- Konten footer tidak berubah -->
+        <!-- Konten footer -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
             <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
             <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan.</p>
@@ -131,8 +130,8 @@ title: Kartu
         const buttonText = document.getElementById('button-text');
         const buttonSpinner = document.getElementById('button-spinner');
         
-        // URL Google Apps Script Anda
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyR1ggQDzSs7q6urboGyrYNWtgYinPSfbxncjNyyQUvsHbC7TAnlgQFq07xEHaBSY4r/exec';
+        // URL Google Apps Script Anda yang baru
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbypnZlLyyNlwVJK8_KgE-C_4B5L0TkXd5ulfawnyDCHGRAuSjy0udLLyRiIDIwiPKtc9w/exec';
 
         // --- Logika dasar (preloader, menu, dll.) ---
         const preloader = document.getElementById('preloader');
@@ -164,95 +163,24 @@ title: Kartu
             });
             return isValid;
         };
-
-        // Fungsi ini sekarang hanya mengirim data, tidak lagi membuat PDF
-        const sendDataToScript = async () => {
-            try {
-                // 1. Kumpulkan semua data teks dari formulir
-                const formDataObject = {};
-                new FormData(form).forEach((value, key) => {
-                    if (typeof value === 'string') {
-                        formDataObject[key] = value;
-                    }
-                });
-
-                // 2. Buat PDF di browser untuk mendapatkan Base64-nya
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                const nama = formDataObject["Nama Lengkap"];
-                const sertifikatFile = document.getElementById('sertifikat-mapaba').files[0];
-                const fotoFile = document.getElementById('foto').files[0];
-
-                const readFileAsDataURL = (file) => new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = (error) => reject(new Error(`Gagal membaca file: ${file.name}`));
-                    reader.readAsDataURL(file);
-                });
-
-                const [sertifikatDataUrl, fotoDataUrl] = await Promise.all([
-                    readFileAsDataURL(sertifikatFile),
-                    readFileAsDataURL(fotoFile)
-                ]);
-
-                // Membuat PDF dengan data yang ada
-                doc.setFontSize(18).setFont('helvetica', 'bold').text('Formulir Pendaftaran Kader PMII', 105, 20, { align: 'center' });
-                doc.setFontSize(12);
-                let yPos = 40;
-                // Fungsi addText akan ditambahkan nanti setelah nomor anggota didapat
-                const addText = (label, value) => { 
-                    doc.setFont('helvetica', 'bold');
-                    doc.text(label, 20, yPos);
-                    doc.setFont('helvetica', 'normal');
-                    doc.text(String(value), 80, yPos); // Pastikan value adalah string
-                    yPos += 10; 
-                };
-                
-                // Tambahkan data ke PDF, nomor anggota akan ditambahkan oleh skrip
-                // Untuk sementara, kita buat PDF tanpa nomor anggota
-                addText('Nama Lengkap', nama);
-                addText('Email', formDataObject["Email"]);
-                addText('Telepon', formDataObject["Telepon"]);
-                addText('Rayon/Fakultas', formDataObject["Rayon/Fakultas"]);
-                addText('Komisariat/Kampus', formDataObject["Komisariat/Kampus"]);
-                addText('Cabang', formDataObject["Cabang"]);
-                yPos += 5;
-                doc.setFont('arial', 'bold').text('', 20, yPos); 
-                doc.addImage(fotoDataUrl, 'JPEG', 20, yPos + 5, 40, 60);
-                doc.text('', 100, yPos); 
-                doc.addImage(sertifikatDataUrl, 'JPEG', 100, yPos + 5, 80, (doc.getImageProperties(sertifikatDataUrl).height * 80) / doc.getImageProperties(sertifikatDataUrl).width);
-                
-                const pdfBase64 = doc.output('datauristring');
-
-                // 3. Siapkan payload untuk dikirim
-                const payload = {
-                    fileName: `Formulir-Pendaftaran-${nama.replace(/\s/g, '-')}.pdf`,
-                    file: pdfBase64,
-                    formData: formDataObject
-                };
-
-                // 4. Kirim ke Google Apps Script
-                const response = await fetch(googleScriptUrl, {
-                    method: 'POST',
-                    body: JSON.stringify(payload),
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
-                });
-                
-                return await response.json();
-
-            } catch (error) {
-                // Tangkap error dari pembuatan PDF atau pengiriman
-                throw new Error(`Gagal memproses data: ${error.message}`);
-            }
-        };
+        
+        const readFileAsDataURL = (file) => new Promise((resolve, reject) => {
+            if (!file) return reject(new Error("File tidak ditemukan."));
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(new Error(`Gagal membaca file: ${file.name}`));
+            reader.readAsDataURL(file);
+        });
 
         if (submitButton) {
             submitButton.addEventListener('click', async () => {
                 statusMessage.style.display = 'none';
-
                 if (!validateForm()) {
                     showMessage("Harap isi semua kolom yang wajib diisi.", true);
+                    return;
+                }
+                if (googleScriptUrl === 'PASTE_URL_BARU_ANDA_DI_SINI') {
+                    showMessage("Kesalahan Konfigurasi: URL Google Script belum dimasukkan.", true);
                     return;
                 }
 
@@ -261,19 +189,47 @@ title: Kartu
                 submitButton.disabled = true;
 
                 try {
-                    const result = await sendDataToScript();
+                    showMessage("Mengumpulkan data formulir...");
+                    const formDataObject = {};
+                    new FormData(form).forEach((value, key) => {
+                        if (typeof value === 'string') formDataObject[key] = value;
+                    });
 
-                    if (result.status !== 'success') {
-                        throw new Error(result.message || "Gagal mengirim data ke server.");
-                    }
+                    showMessage("Membaca file gambar...");
+                    const fotoFile = document.getElementById('foto').files[0];
+                    const sertifikatFile = document.getElementById('sertifikat-mapaba').files[0];
 
-                    showMessage(result.message); // Tampilkan pesan sukses dari server
+                    const [fotoBase64, sertifikatBase64] = await Promise.all([
+                        readFileAsDataURL(fotoFile),
+                        readFileAsDataURL(sertifikatFile)
+                    ]);
+                    
+                    const payload = {
+                        formData: formDataObject,
+                        fotoFile: { name: fotoFile.name, type: fotoFile.type, data: fotoBase64 },
+                        sertifikatFile: { name: sertifikatFile.name, type: sertifikatFile.type, data: sertifikatBase64 }
+                    };
+
+                    showMessage("Mengirim data ke server untuk diarsipkan...");
+                    const response = await fetch(googleScriptUrl, {
+                        method: 'POST',
+                        body: JSON.stringify(payload),
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                    }).catch(networkError => {
+                        throw new Error("Gagal terhubung ke server. Periksa koneksi internet Anda atau pastikan izin deployment skrip sudah benar (diatur untuk 'Siapa saja').");
+                    });
+                    
+                    if (!response.ok) throw new Error(`Server merespons dengan error (status: ${response.status}). Pastikan URL skrip benar dan sudah di-deploy ulang dengan izin 'Siapa saja'.`);
+                    const result = await response.json();
+                    if (result.status !== 'success') throw new Error(result.message || "Gagal mendapatkan nomor anggota dari server.");
+                    
+                    showMessage(result.message);
                     form.reset();
                     form.querySelectorAll('.file-name').forEach(span => span.textContent = 'Pilih file...');
 
                 } catch (error) {
                     console.error("Detail Kesalahan:", error);
-                    showMessage(`Terjadi kesalahan: ${error.message}. Silakan coba lagi.`, true);
+                    showMessage(`Terjadi kesalahan: ${error.message}`, true);
                 } finally {
                     buttonText.classList.remove('hidden');
                     buttonSpinner.classList.add('hidden');
