@@ -1,12 +1,12 @@
 ---
-# Front matter ini penting agar Jekyll memproses halaman ini
+# Front Matter untuk Jekyll, jangan dihapus.
 layout: default
 title: Rilis
 ---
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-    <!-- Pengaturan Dasar & SEO -->
+    <!-- Konfigurasi dasar, SEO, dan metadata halaman -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rilis - PKC PMII Bali Nusra</title>
@@ -23,14 +23,14 @@ title: Rilis
 
     <!-- Style Kustom -->
     <style>
-        /* Mengatur font dasar dan anti-aliasing untuk teks yang lebih halus */
+        /* Font dasar dan anti-aliasing untuk teks yang lebih halus */
         body {
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            background-color: #ffffff; /* Latar belakang diubah menjadi putih */
+            background-color: #ffffff;
         }
-        /* Gradient untuk elemen Call-to-Action (CTA) seperti header dan footer */
+        /* Gradient untuk header dan footer */
         .cta-gradient {
             background: linear-gradient(90deg, #0973D6, #2918A9);
         }
@@ -45,10 +45,10 @@ title: Rilis
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        /* Animasi untuk elemen saat di-scroll */
+        /* Animasi elemen muncul dari bawah saat di-scroll */
         @keyframes slideInFromBottom { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .animate-on-scroll {
-            opacity: 0;
+            opacity: 0; /* Awalnya transparan */
         }
         .animate-slide-in-bottom {
             animation: slideInFromBottom .6s ease-out forwards;
@@ -65,8 +65,9 @@ title: Rilis
     <!-- ===== HEADER & NAVIGASI ===== -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <!-- Logo, link ke halaman utama menggunakan variabel Jekyll -->
+            <!-- Logo -->
             <img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12">
+            
             <!-- Navigasi Desktop -->
             <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <a href="/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
@@ -74,11 +75,15 @@ title: Rilis
                 <a href="/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
                 <a href="/rilis" class="text-[#ffcb05] text-sm font-bold">Rilis</a>
             </nav>
-            <!-- Tombol CTA Desktop dengan animasi hover -->
+            
+            <!-- Tombol CTA Desktop -->
             <a href="/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Kartu</a>
+            
+            <!-- Tombol Menu Mobile -->
             <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
         </div>
-        <!-- Navigasi Mobile -->
+        
+        <!-- Navigasi Mobile (toggle) -->
         <div id="mobile-menu" class="hidden md:hidden cta-gradient">
             <a href="/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
             <a href="/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
@@ -88,49 +93,42 @@ title: Rilis
         </div>
     </header>
 
-    <!-- ===== KONTEN UTAMA HALAMAN RILIS ===== -->
-    <!-- Padding atas untuk memberi ruang dari header, padding bawah untuk spasi -->
+    <!-- ===== KONTEN UTAMA ===== -->
     <main class="pt-24 md:pt-28 pb-16 md:pb-24">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header Halaman dengan ukuran font responsif -->
+            <!-- Judul Halaman -->
             <header class="text-center mb-12 md:mb-16 animate-on-scroll">
                 <h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">RILIS</h3>
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">Berita dan Opini</h1>
             </header>
 
-            <!-- Grid untuk menampilkan semua rilis -->
+            <!-- Daftar Rilis -->
             <div class="max-w-4xl mx-auto space-y-8">
-                
-                <!-- Perulangan Jekyll untuk setiap post di folder _posts -->
+                <!-- Loop Jekyll untuk semua post -->
                 {% for post in site.posts %}
                 <div class="animate-on-scroll">
-                    <!-- Kartu rilis yang dapat diklik, border ditambahkan untuk kontras di latar putih -->
+                    <!-- Kartu Rilis -->
                     <a href="{{ post.url | relative_url }}" class="block group bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-xl hover:border-transparent transition-all duration-300 overflow-hidden">
                         <div class="flex flex-col md:flex-row">
-                            <!-- Gambar Rilis -->
+                            <!-- Gambar Post -->
                             <div class="w-full md:w-64 flex-shrink-0 h-48 md:h-auto">
                                 {% if post.image %}
-                                    <!-- Tampilkan gambar jika ada -->
+                                    <!-- Tampilkan gambar jika ada di front matter post -->
                                     <img src="{{ post.image }}" class="w-full h-full object-cover" alt="{{ post.title }}" loading="lazy">
                                 {% else %}
                                     <!-- Tampilkan placeholder jika tidak ada gambar -->
                                     <div class="w-full h-full bg-gray-100 flex items-center justify-center">
-                                        <!-- Ukuran ikon placeholder disesuaikan -->
                                         <i data-lucide="image-off" class="w-10 h-10 text-gray-400"></i>
                                     </div>
                                 {% endif %}
                             </div>
-                            <!-- Konten Teks Rilis -->
+                            <!-- Konten Teks Post -->
                             <div class="flex-grow p-6 flex flex-col">
-                                <!-- Tanggal Rilis (Ukuran font xs) -->
                                 <p class="text-xs text-gray-500 mb-2">{{ post.date | date: "%d %B %Y" }}</p>
-                                <!-- Judul Rilis (Ukuran font lg/base) -->
                                 <h2 class="text-lg sm:text-xl font-bold text-gray-800 transition-colors duration-300 group-hover:text-[#0973D6]">{{ post.title }}</h2>
-                                <!-- Kutipan/Excerpt Rilis (Ukuran font base/sm) -->
                                 <p class="mt-2 text-sm sm:text-base text-gray-600 flex-grow">
                                     {{ post.excerpt | strip_html | truncatewords: 25 }}
                                 </p>
-                                <!-- Link "Baca Selengkapnya" -->
                                 <p class="mt-4 text-sm font-semibold text-[#0973D6] group-hover:underline">
                                     Selengkapnya &rarr;
                                 </p>
@@ -139,20 +137,18 @@ title: Rilis
                     </a>
                 </div>
                 {% endfor %}
-                
             </div>
 
-            <!-- Pesan jika tidak ada rilis -->
+            <!-- Pesan jika tidak ada post/rilis -->
             {% if site.posts.size == 0 %}
                 <p class="text-center text-gray-500 mt-16">Belum ada rilis yang dipublikasikan.</p>
             {% endif %}
-
         </div>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer id="kontak" class="cta-gradient text-white">
-        <!-- Konten footer tidak diubah, hanya ditambahkan animasi hover pada tombol -->
+        <!-- Konten footer dibuat konsisten dengan halaman lain -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
             <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
             <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan.</p>
@@ -166,7 +162,7 @@ title: Rilis
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
-                <div class="max-w-sm"><h3 class="text-lg font-semibold text-white mb-4">Alamat</h3><p class="text-sm text-white/80">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p></div>
+                <div><h3 class="text-lg font-semibold text-white mb-4">Alamat</h3><p class="text-sm text-white/80 max-w-sm">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p></div>
                 <div><h3 class="text-lg font-semibold text-white mb-4">Media Sosial</h3><div class="flex justify-center md:justify-start space-x-4 mt-2"><a href="https://youtube.com/@pkcpmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a><a href="https://facebook.com/pkcpmiibalinusatenggara" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a><a href="https://instagram.com/pkc.pmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a></div></div>
             </div>
             <div class="mt-16 pt-8 border-t border-white/20 text-center text-white/60 text-sm"><p>&copy; <span id="year"></span> PKC PMII Bali Nusra.</p></div>
@@ -176,13 +172,13 @@ title: Rilis
     <!-- ===== JAVASCRIPT ===== -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- Inisialisasi Elemen ---
+        // Seleksi elemen DOM
         const preloader = document.getElementById('preloader');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const yearSpan = document.getElementById('year');
 
-        // --- Logika Preloader ---
+        // Sembunyikan preloader setelah halaman dimuat
         if (preloader) {
             setTimeout(() => {
                 preloader.style.transition = "opacity .5s ease";
@@ -191,37 +187,34 @@ title: Rilis
             }, 500);
         }
 
-        // --- Logika Menu Mobile ---
+        // Toggle menu mobile saat tombol diklik
         if (mobileMenuButton) {
             mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("hidden");
             });
         }
 
-        // --- Set Tahun di Footer ---
+        // Set tahun copyright secara dinamis
         if(yearSpan) {
             yearSpan.textContent = new Date().getFullYear();
         }
 
-        // --- Fungsi untuk Animasi saat Scroll ---
+        // Animasi elemen saat terlihat di layar (on-scroll)
         function setupScrollAnimations() {
             const animatedElements = document.querySelectorAll(".animate-on-scroll");
-            // Observer untuk mendeteksi kapan elemen masuk ke viewport
             const observer = new IntersectionObserver(entries => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
-                        // Tambahkan delay berbeda untuk setiap elemen agar muncul satu per satu
-                        entry.target.style.animationDelay = `${index * 100}ms`;
+                        entry.target.style.animationDelay = `${index * 100}ms`; // Efek stagger
                         entry.target.classList.add("animate-slide-in-bottom");
-                        observer.unobserve(entry.target); // Hentikan observasi setelah animasi berjalan
+                        observer.unobserve(entry.target); // Hentikan observasi setelah animasi
                     }
                 });
-            }, { threshold: 0.1 }); // Animasi terpicu saat 10% elemen terlihat
-
+            }, { threshold: 0.1 });
             animatedElements.forEach(el => observer.observe(el));
         }
 
-        // --- Inisialisasi Ikon dan Animasi ---
+        // Inisialisasi semua fungsi & library
         lucide.createIcons();
         setupScrollAnimations();
     });
