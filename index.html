@@ -1,12 +1,12 @@
 ---
-# Front matter ini penting agar Jekyll memproses halaman ini
+# Front Matter untuk Jekyll, jangan dihapus.
 layout: default
 title: Beranda
 ---
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-    <!-- Pengaturan Dasar & SEO -->
+    <!-- Konfigurasi dasar, SEO, dan metadata halaman -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PKC PMII Bali Nusra</title>
@@ -23,14 +23,14 @@ title: Beranda
 
     <!-- Style Kustom -->
     <style>
-        /* Mengatur font dasar dan latar belakang utama */
+        /* Font dasar dan anti-aliasing untuk teks yang lebih halus */
         body {
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             background-color: #ffffff;
         }
-        /* Gradient untuk elemen Call-to-Action (CTA) */
+        /* Gradient untuk header, footer, dan elemen CTA */
         .cta-gradient {
             background: linear-gradient(90deg, #0973D6, #2918A9);
         }
@@ -45,10 +45,10 @@ title: Beranda
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        /* Animasi untuk elemen saat di-scroll */
+        /* Animasi elemen muncul dari bawah saat di-scroll */
         @keyframes slideInFromBottom { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .animate-on-scroll {
-            opacity: 0;
+            opacity: 0; /* Awalnya transparan */
         }
         .animate-slide-in-bottom {
             animation: slideInFromBottom .6s ease-out forwards;
@@ -67,6 +67,7 @@ title: Beranda
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             <!-- Logo -->
             <img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12">
+            
             <!-- Navigasi Desktop -->
             <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <a href="/" class="text-[#ffcb05] text-sm font-bold">Beranda</a>
@@ -74,11 +75,15 @@ title: Beranda
                 <a href="/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
                 <a href="/rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
             </nav>
+            
             <!-- Tombol CTA Desktop -->
             <a href="/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Kartu</a>
+            
+            <!-- Tombol Menu Mobile -->
             <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
         </div>
-        <!-- Navigasi Mobile -->
+        
+        <!-- Navigasi Mobile (toggle) -->
         <div id="mobile-menu" class="hidden md:hidden cta-gradient">
             <a href="/" class="block text-center py-3 px-6 text-yellow-300 font-bold text-base bg-white/10">Beranda</a>
             <a href="/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
@@ -88,21 +93,22 @@ title: Beranda
         </div>
     </header>
 
-    <!-- ===== KONTEN UTAMA HALAMAN BERANDA ===== -->
+    <!-- ===== KONTEN UTAMA ===== -->
     <main>
-        <!-- ===== SEKSI HERO ===== -->
-        <!-- Bagian pembuka halaman dengan tinggi layar penuh -->
+        <!-- SEKSI HERO: Tampilan pembuka halaman -->
         <section class="relative h-screen w-full cta-gradient overflow-hidden">
-            <!-- Latar belakang animasi GIF -->
-            <div class="absolute inset-0 z-10 opacity-20"><img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExb296cGVwaXhkbTJlY3pkazgxczV1dmxxamYxcHAxbG5rZ2k1M3lueSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CGG5izjzINNQq1vTF3/giphy.gif" class="w-full h-full object-cover" alt="Latar belakang partikel animasi" loading="lazy"></div>
-            <!-- Konten utama Hero: Logo -->
+            <!-- Latar belakang animasi -->
+            <div class="absolute inset-0 z-10 opacity-20">
+                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExb296cGVwaXhkbTJlY3pkazgxczV1dmxxamYxcHAxbG5rZ2k1M3lueSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CGG5izjzINNQq1vTF3/giphy.gif" class="w-full h-full object-cover" alt="Latar belakang partikel animasi" loading="lazy">
+            </div>
+            <!-- Konten utama (Logo) -->
             <div class="relative z-20 flex items-center justify-center w-full h-full p-4">
                 <img src="assets/images/logo2.png" class="h-auto w-full max-w-sm md:max-w-2xl hidden md:block" alt="Logo lengkap PKC PMII Bali Nusra format desktop">
                 <img src="assets/images/logo3.png" class="h-auto w-3/4 md:hidden" alt="Logo lengkap PKC PMII Bali Nusra format mobile">
             </div>
         </section>
 
-        <!-- ===== SEKSI TOTAL KEPENGURUSAN ===== -->
+        <!-- SEKSI STATISTIK: Total Tingkat Kepengurusan -->
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Judul Seksi -->
@@ -119,7 +125,7 @@ title: Beranda
             </div>
         </section>
 
-        <!-- ===== SEKSI TENTANG (RINGKAS) ===== -->
+        <!-- SEKSI TENTANG: Tujuan dan Usaha PMII -->
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Judul Seksi -->
@@ -127,7 +133,7 @@ title: Beranda
                     <h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">TENTANG</h3>
                     <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900">Tujuan dan Usaha</h2>
                 </div>
-                <!-- Grid Konten Tentang -->
+                <!-- Konten Grid -->
                 <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div class="animate-on-scroll">
                         <img src="assets/images/bendera.png" alt="Infografis Asas dan Tujuan PMII" class="rounded-2xl shadow-xl w-full h-auto" loading="lazy">
@@ -154,28 +160,28 @@ title: Beranda
             </div>
         </section>
 
-        <!-- ===== SEKSI PROGRAM KADERISASI ===== -->
+        <!-- SEKSI PROGRAM: Agenda Kaderisasi -->
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 md:mb-16 animate-on-scroll"><h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">PROGRAM</h3><h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900">Agenda Kaderisasi</h2></div>
-                <div id="program-kaderisasi-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <div id="program-kaderisasi-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Daftar program akan di-render oleh JavaScript -->
+                </div>
             </div>
         </section>
 
-        <!-- ===== SEKSI RILIS TERBARU (JEKYLL) ===== -->
+        <!-- SEKSI RILIS: Berita dan Opini Terbaru -->
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 md:mb-16 animate-on-scroll"><h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">RILIS</h3><h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900">Berita dan Opini</h2></div>
-                <!-- Wadah untuk daftar rilis -->
+                <!-- Daftar Rilis dari Jekyll -->
                 <div class="max-w-4xl mx-auto space-y-8">
-                    
-                    <!-- Perulangan Jekyll untuk menampilkan 5 post terbaru -->
+                    <!-- Loop Jekyll untuk 5 post terbaru -->
                     {% for post in site.posts limit:5 %}
                     <div class="animate-on-scroll">
-                        <!-- Kartu rilis yang dapat diklik, dengan format yang sama seperti di rilis.html -->
                         <a href="{{ post.url | relative_url }}" class="block group bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-xl hover:border-transparent transition-all duration-300 overflow-hidden">
                             <div class="flex flex-col md:flex-row">
-                                <!-- Gambar Rilis -->
+                                <!-- Gambar Post -->
                                 <div class="w-full md:w-64 flex-shrink-0 h-48 md:h-auto">
                                     {% if post.image %}
                                         <img src="{{ post.image }}" class="w-full h-full object-cover" alt="{{ post.title }}" loading="lazy">
@@ -183,7 +189,7 @@ title: Beranda
                                         <div class="w-full h-full bg-gray-100 flex items-center justify-center"><i data-lucide="image-off" class="w-10 h-10 text-gray-400"></i></div>
                                     {% endif %}
                                 </div>
-                                <!-- Konten Teks Rilis -->
+                                <!-- Konten Teks Post -->
                                 <div class="flex-grow p-6 flex flex-col">
                                     <p class="text-xs text-gray-500 mb-2">{{ post.date | date: "%d %B %Y" }}</p>
                                     <h4 class="text-lg sm:text-xl font-bold text-gray-800 transition-colors duration-300 group-hover:text-[#0973D6]">{{ post.title }}</h4>
@@ -194,9 +200,8 @@ title: Beranda
                         </a>
                     </div>
                     {% endfor %}
-
                 </div>
-                <!-- Tombol untuk melihat semua rilis -->
+                <!-- Tombol Lihat Semua Rilis -->
                 <div class="text-center mt-12 animate-on-scroll"><a href="{{ site.baseurl }}/rilis.html" class="inline-block bg-[#0973D6] text-white px-8 py-3 rounded-full font-bold text-base shadow-lg transition-all duration-300 hover:bg-[#FFCB05] hover:text-black hover:scale-105">Lainnya</a></div>
             </div>
         </section>
@@ -204,7 +209,6 @@ title: Beranda
 
     <!-- ===== FOOTER ===== -->
     <footer id="kontak" class="cta-gradient text-white">
-        <!-- Konten footer sama dengan halaman lain untuk konsistensi -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
             <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
             <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan.</p>
@@ -218,7 +222,7 @@ title: Beranda
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
-                <div class="max-w-sm"><h3 class="text-lg font-semibold text-white mb-4">Alamat</h3><p class="text-sm text-white/80">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p></div>
+                <div><h3 class="text-lg font-semibold text-white mb-4">Alamat</h3><p class="text-sm text-white/80 max-w-sm">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p></div>
                 <div><h3 class="text-lg font-semibold text-white mb-4">Media Sosial</h3><div class="flex justify-center md:justify-start space-x-4 mt-2"><a href="https://youtube.com/@pkcpmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a><a href="https://facebook.com/pkcpmiibalinusatenggara" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a><a href="https://instagram.com/pkc.pmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a></div></div>
             </div>
             <div class="mt-16 pt-8 border-t border-white/20 text-center text-white/60 text-sm"><p>&copy; <span id="year"></span> PKC PMII Bali Nusra.</p></div>
@@ -228,18 +232,18 @@ title: Beranda
     <!-- ===== JAVASCRIPT ===== -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- Database Lokal untuk Program Kaderisasi ---
+        // Data program kaderisasi (sebagai database lokal)
         const database = {
             kaderisasi: [{ name: 'Sekolah/Pesantren Aswaja', icon: 'book-open' },{ name: 'Kelas Bahasa Asing/Toefl', icon: 'languages' },{ name: 'Sekolah Public-Speaking', icon: 'mic' },{ name: 'Sekolah Epistimologi', icon: 'brain-circuit' },{ name: 'Sekolah Jurnalistik/Penulisan', icon: 'file-pen-line' },{ name: 'Pelatihan Ospek Kader (PKP)', icon: 'shield' },{ name: 'Pelatihan Paralegal', icon: 'gavel' },{ name: 'Sekolah Kesenian', icon: 'palette' },{ name: 'Sekolah Desain Grafis', icon: 'pen-tool' },{ name: 'Sekolah Ansos Teoritik', icon: 'microscope' },{ name: 'Kelas Rutin Bahasa Asing', icon: 'message-square-plus' },{ name: 'Pelatihan Instruktur MAPABA', icon: 'presentation' },{ name: 'Sekolah Kepemimpinan', icon: 'crown' },{ name: 'Sekolah Mentor', icon: 'user-check' },{ name: 'Sekolah Pemikiran Islam', icon: 'brain' },{ name: 'Sekolah Politik Kampus', icon: 'landmark' },{ name: 'Sekolah Dakwah', icon: 'volume-2' },{ name: 'Sekolah Ideologi Dunia', icon: 'globe-2' },{ name: 'Sekolah Cyber', icon: 'cpu' },{ name: 'Sekolah Teknologi', icon: 'server' },{ name: 'Kelas UI/UX', icon: 'layout-template' },{ name: 'Kelas Menulis Feature', icon: 'edit-3' },{ name: 'Pelatihan Instruktur PKD', icon: 'award' },{ name: 'Sekolah Ansos Terapan', icon: 'flask-conical' },{ name: 'Sekolah Analisis Kebijakan', icon: 'bar-chart-3' },{ name: 'Sekolah Analisis Anggaran', icon: 'wallet' },{ name: 'Sekolah Legal-Drafting', icon: 'scale' },{ name: 'Sekolah Ekonomi', icon: 'dollar-sign' },{ name: 'Sekolah Motivator', icon: 'trending-up' },{ name: 'Sekolah Kewilayahan', icon: 'map' }]
         };
 
-        // --- Inisialisasi Elemen DOM ---
+        // Seleksi elemen DOM
         const preloader = document.getElementById('preloader');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const yearSpan = document.getElementById('year');
 
-        // --- Logika Preloader ---
+        // Sembunyikan preloader setelah halaman dimuat
         if (preloader) {
             setTimeout(() => {
                 preloader.style.transition = "opacity .5s ease";
@@ -248,56 +252,57 @@ title: Beranda
             }, 500);
         }
 
-        // --- Logika Menu Mobile ---
+        // Toggle menu mobile saat tombol diklik
         if (mobileMenuButton) {
             mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("hidden");
             });
         }
 
-        // --- Set Tahun di Footer ---
+        // Set tahun copyright di footer secara dinamis
         if(yearSpan) {
             yearSpan.textContent = new Date().getFullYear();
         }
 
-        // --- Fungsi untuk Animasi saat Scroll ---
+        // Animasi elemen saat terlihat di layar (on-scroll)
         function setupScrollAnimations() {
             const animatedElements = document.querySelectorAll(".animate-on-scroll");
             const observer = new IntersectionObserver(entries => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
-                        entry.target.style.animationDelay = `${index * 100}ms`;
+                        entry.target.style.animationDelay = `${index * 100}ms`; // Efek stagger
                         entry.target.classList.add("animate-slide-in-bottom");
-                        const numberCounters = entry.target.querySelectorAll(".number-counter");
-                        numberCounters.forEach(animateCountUp);
-                        observer.unobserve(entry.target);
+                        // Jalankan juga animasi angka jika ada di dalam elemen
+                        entry.target.querySelectorAll(".number-counter").forEach(animateCountUp);
+                        observer.unobserve(entry.target); // Hentikan observasi setelah animasi berjalan
                     }
                 });
             }, { threshold: 0.1 });
             animatedElements.forEach(el => observer.observe(el));
         }
         
-        // --- Fungsi untuk Animasi Hitung Angka ---
+        // Animasi hitung angka (counter)
         function animateCountUp(element) {
-            if (element.dataset.animated) return;
+            if (element.dataset.animated) return; // Hindari animasi berulang
             element.dataset.animated = "true";
+            
             const target = parseInt(element.dataset.target, 10);
             let current = 0;
             const duration = 2000;
-            const increment = target / (duration / 16);
-            const updateCount = () => {
+            const step = () => {
+                const increment = target / (duration / 16);
                 current += increment;
                 if (current < target) {
                     element.innerText = Math.ceil(current) + "+";
-                    requestAnimationFrame(updateCount);
+                    requestAnimationFrame(step);
                 } else {
                     element.innerText = target + "+";
                 }
             };
-            updateCount();
+            step();
         }
 
-        // --- Fungsi untuk Merender Program Kaderisasi ---
+        // Render daftar program kaderisasi dari database
         function renderKaderisasiPrograms() {
             const container = document.getElementById('program-kaderisasi-list');
             if (container) {
@@ -311,10 +316,10 @@ title: Beranda
             }
         }
 
-        // --- Inisialisasi Semua Fungsi ---
+        // Inisialisasi semua fungsi
         renderKaderisasiPrograms();
-        lucide.createIcons();
-        setupScrollAnimations();
+        lucide.createIcons(); // Render ikon Lucide
+        setupScrollAnimations(); // Aktifkan animasi scroll setelah elemen dirender
     });
     </script>
 </body>
