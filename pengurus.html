@@ -1,12 +1,12 @@
 ---
-# Front matter ini penting agar Jekyll memproses halaman ini
+# Front Matter untuk Jekyll, jangan dihapus.
 layout: default
 title: Pengurus
 ---
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-    <!-- Pengaturan Dasar & SEO -->
+    <!-- Konfigurasi dasar, SEO, dan metadata halaman -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengurus - PKC PMII Bali Nusra</title>
@@ -14,7 +14,7 @@ title: Pengurus
     <meta name="keywords" content="Pengurus PMII, Struktur Organisasi PMII, PMII Bali Nusra, Ahmad Muzakkir, Nurhalifah">
 
     <!-- Ikon, Font, dan Library Eksternal -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,14 +23,14 @@ title: Pengurus
 
     <!-- Style Kustom -->
     <style>
-        /* Mengatur font dasar dan latar belakang utama menjadi putih */
+        /* Font dasar dan anti-aliasing untuk teks yang lebih halus */
         body {
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            background-color: #ffffff; /* Latar belakang diubah menjadi putih */
+            background-color: #ffffff;
         }
-        /* Gradient untuk elemen Call-to-Action (CTA) */
+        /* Gradient untuk header, footer, dan elemen CTA */
         .cta-gradient {
             background: linear-gradient(90deg, #0973D6, #2918A9);
         }
@@ -45,10 +45,10 @@ title: Pengurus
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        /* Animasi untuk elemen saat di-scroll */
+        /* Animasi elemen muncul dari bawah saat di-scroll */
         @keyframes slideInFromBottom { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .animate-on-scroll {
-            opacity: 0;
+            opacity: 0; /* Awalnya transparan */
         }
         .animate-slide-in-bottom {
             animation: slideInFromBottom .6s ease-out forwards;
@@ -65,8 +65,9 @@ title: Pengurus
     <!-- ===== HEADER & NAVIGASI ===== -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <!-- Logo, link ke halaman utama -->
-                <img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12">
+            <!-- Logo -->
+            <img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12">
+            
             <!-- Navigasi Desktop -->
             <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <a href="/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
@@ -74,43 +75,46 @@ title: Pengurus
                 <a href="/pengurus" class="text-[#FFCB05] text-sm font-bold">Pengurus</a>
                 <a href="/rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
             </nav>
+            
             <!-- Tombol CTA Desktop -->
             <a href="/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Kartu</a>
+            
+            <!-- Tombol Menu Mobile -->
             <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
         </div>
-        <!-- Navigasi Mobile -->
+        
+        <!-- Navigasi Mobile (toggle) -->
         <div id="mobile-menu" class="hidden md:hidden cta-gradient">
             <a href="/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
             <a href="/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
             <a href="/pengurus" class="block text-center py-3 px-6 text-yellow-300 font-bold text-base bg-white/10">Pengurus</a>
-            <a href="rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Rilis</a>
+            <a href="/rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Rilis</a>
             <div class="p-4"><a href="/kartu" class="block w-full text-center bg-[#FFCB05] text-black px-5 py-3 rounded-full font-bold text-base transition-transform hover:scale-105">Kartu</a></div>
         </div>
     </header>
 
-    <!-- ===== KONTEN UTAMA HALAMAN PENGURUS ===== -->
+    <!-- ===== KONTEN UTAMA ===== -->
     <main class="pt-24 md:pt-28 pb-16 md:pb-24">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header Halaman -->
+            <!-- Judul Halaman -->
             <header class="text-center mb-12 md:mb-16 animate-on-scroll">
                 <h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">PENGURUS</h3>
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">PMII Bali Nusra</h1>
             </header>
 
-            <!-- ===== SEKSI PENGURUS UTAMA ===== -->
+            <!-- SEKSI PIMPINAN UTAMA (BPH) -->
             <section id="pimpinan">
-                <!-- Grid untuk menampung 2 kartu utama dan membuatnya terpusat -->
+                <!-- Kontainer untuk kartu BPH, dirender oleh JavaScript -->
                 <div id="bph-list" class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-                    <!-- Kartu Pengurus akan dirender oleh JavaScript di sini -->
+                    <!-- Kartu pengurus akan diisi di sini -->
                 </div>
             </section>
-
         </div>
     </main>
 
     <!-- ===== FOOTER ===== -->
     <footer id="kontak" class="cta-gradient text-white">
-        <!-- Konten footer sama dengan halaman lain untuk konsistensi -->
+        <!-- Konten footer dibuat konsisten dengan halaman lain -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
             <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
             <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan Mahasiswa Islam Indonesia.</p>
@@ -124,7 +128,7 @@ title: Pengurus
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
-                <div class="max-w-sm"><h3 class="text-lg font-semibold text-white mb-4">Alamat</h3><p class="text-sm text-white/80">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p></div>
+                <div><h3 class="text-lg font-semibold text-white mb-4">Alamat</h3><p class="text-sm text-white/80 max-w-sm">Jl. Catur Warga No. 9A Kelurahan Pejanggik, Kecamatan Mataram Timur, Kota Mataram, Provinsi Nusa Tenggara Barat, Indonesia (83127).</p></div>
                 <div><h3 class="text-lg font-semibold text-white mb-4">Media Sosial</h3><div class="flex justify-center md:justify-start space-x-4 mt-2"><a href="https://youtube.com/@pkcpmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a><a href="https://facebook.com/pkcpmiibalinusatenggara" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a><a href="https://instagram.com/pkc.pmiibalinusra" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a></div></div>
             </div>
             <div class="mt-16 pt-8 border-t border-white/20 text-center text-white/60 text-sm"><p>&copy; <span id="year"></span> PKC PMII Bali Nusra.</p></div>
@@ -134,30 +138,22 @@ title: Pengurus
     <!-- ===== JAVASCRIPT ===== -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- Database Lokal untuk Struktur Pengurus (disederhanakan) ---
+        // Data pimpinan utama (sebagai database lokal)
         const database = {
             pimpinan: [
-                { 
-                    nama: 'Ahmad Muzakkir', 
-                    jabatan: 'Ketua PKC',
-                    foto: 'assets/images/zakir.png'
-                },
-                { 
-                    nama: 'Nurhalifah', 
-                    jabatan: 'Ketua KOPRI',
-                    foto: 'assets/images/ifa.png'
-                }
+                { nama: 'Ahmad Muzakkir', jabatan: 'Ketua PKC', foto: 'assets/images/zakir.png' },
+                { nama: 'Nurhalifah', jabatan: 'Ketua KOPRI', foto: 'assets/images/ifa.png' }
             ]
         };
 
-        // --- Inisialisasi Elemen DOM ---
+        // Seleksi elemen DOM
         const preloader = document.getElementById('preloader');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const yearSpan = document.getElementById('year');
         const bphContainer = document.getElementById('bph-list');
 
-        // --- Logika Preloader ---
+        // Sembunyikan preloader setelah halaman dimuat
         if (preloader) {
             setTimeout(() => {
                 preloader.style.transition = "opacity .5s ease";
@@ -166,34 +162,34 @@ title: Pengurus
             }, 500);
         }
 
-        // --- Logika Menu Mobile ---
+        // Toggle menu mobile saat tombol diklik
         if (mobileMenuButton) {
             mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("hidden");
             });
         }
 
-        // --- Set Tahun di Footer ---
+        // Set tahun copyright secara dinamis
         if(yearSpan) {
             yearSpan.textContent = new Date().getFullYear();
         }
 
-        // --- Fungsi untuk Animasi saat Scroll ---
+        // Animasi elemen saat terlihat di layar (on-scroll)
         function setupScrollAnimations() {
             const animatedElements = document.querySelectorAll(".animate-on-scroll");
             const observer = new IntersectionObserver(entries => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
-                        entry.target.style.animationDelay = `${index * 100}ms`;
+                        entry.target.style.animationDelay = `${index * 100}ms`; // Efek stagger
                         entry.target.classList.add("animate-slide-in-bottom");
-                        observer.unobserve(entry.target);
+                        observer.unobserve(entry.target); // Hentikan observasi setelah animasi
                     }
                 });
             }, { threshold: 0.1 });
             animatedElements.forEach(el => observer.observe(el));
         }
 
-        // --- Fungsi untuk Merender Pimpinan Utama ---
+        // Render kartu pimpinan utama dari data
         function renderPimpinan() {
             if (bphContainer) {
                 bphContainer.innerHTML = database.pimpinan.map(p => `
@@ -202,9 +198,7 @@ title: Pengurus
                             <div class="overflow-hidden rounded-xl mb-4">
                                 <img src="${p.foto}" alt="Foto ${p.nama}" class="w-full aspect-square object-cover object-top">
                             </div>
-                            <!-- Ukuran font Nama (lg/base) -->
                             <h3 class="text-base sm:text-lg font-bold text-gray-900 truncate">${p.nama}</h3>
-                            <!-- Ukuran font Jabatan (sm/xs) -->
                             <p class="text-xs sm:text-sm text-[#0973D6] font-semibold">${p.jabatan}</p>
                         </div>
                     </div>
@@ -212,7 +206,7 @@ title: Pengurus
             }
         }
 
-        // --- Inisialisasi Semua Fungsi ---
+        // Inisialisasi semua fungsi & library
         renderPimpinan();
         lucide.createIcons();
         setupScrollAnimations();
