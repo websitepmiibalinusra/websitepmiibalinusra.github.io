@@ -1,7 +1,7 @@
 ---
 # Front matter ini penting agar Jekyll memproses halaman ini
 layout: default
-title: Kartu
+title: Keanggotaan
 ---
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
@@ -11,7 +11,7 @@ title: Kartu
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kartu - PKC PMII Bali Nusra</title>
     <meta name="description" content="Bergabunglah dengan Pergerakan Mahasiswa Islam Indonesia (PMII) Bali-Nusa Tenggara. Isi formulir pendaftaran untuk menjadi kader pergerakan.">
-    <meta name="keywords" content="Daftar PMII, Kartu PMII, Formulir PMII, PMII Bali Nusra">
+    <meta name="keywords" content="Daftar PMII, Keanggotaan PMII, Formulir PMII, PMII Bali Nusra">
 
     <!-- Ikon, Font, dan Library Eksternal -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -20,45 +20,22 @@ title: Kartu
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Library untuk membuat PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- Style Kustom -->
     <style>
-        /* Mengatur font dasar dan latar belakang utama menjadi putih */
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: #ffffff;
-        }
-        /* Gradient untuk elemen Call-to-Action (CTA) */
-        .cta-gradient {
-            background: linear-gradient(90deg, #0973D6, #2918A9);
-        }
-        /* Animasi loading spinner */
-        .spinner {
-            width: 56px;
-            height: 56px;
-            border: 8px solid rgba(255, 255, 255, .3);
-            border-top-color: #FFCB05;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background-color: #ffffff; }
+        .cta-gradient { background: linear-gradient(90deg, #0973D6, #2918A9); }
+        .spinner { width: 56px; height: 56px; border: 8px solid rgba(255, 255, 255, .3); border-top-color: #FFCB05; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        
-        /* Animasi untuk elemen saat di-scroll */
         @keyframes slideInFromBottom { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .animate-on-scroll {
-            opacity: 0;
-        }
-        .animate-slide-in-bottom {
-            animation: slideInFromBottom .6s ease-out forwards;
-        }
-        /* Style untuk input form saat focus */
-        .form-input:focus {
-            border-color: #0973D6;
-            box-shadow: 0 0 0 3px rgba(9, 115, 214, 0.2);
-            outline: none;
-        }
+        .animate-on-scroll { opacity: 0; }
+        .animate-slide-in-bottom { animation: slideInFromBottom .6s ease-out forwards; }
+        .form-input:focus { border-color: #0973D6; box-shadow: 0 0 0 3px rgba(9, 115, 214, 0.2); outline: none; }
+        .message-box { font-size: 0.875rem; margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 0.5rem; display: none; }
+        .message-box.error { color: #991b1b; background-color: #fef2f2; border: 1px solid #fecaca; }
+        .message-box.success { color: #14532d; background-color: #f0fdf4; border: 1px solid #bbf7d0; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -71,103 +48,51 @@ title: Kartu
     <!-- ===== HEADER & NAVIGASI ===== -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <!-- Logo, link ke halaman utama -->
-                <img src="assets/images/logo1.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12"
-            <!-- Navigasi Desktop -->
+            <a href="{{ site.baseurl }}/"><img src="https://i.imgur.com/0CzQrgV.png" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12"></a>
             <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                <a href="/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
-                <a href="/tentang" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Tentang</a>
-                <a href="/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
-                <a href="/rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
+                <a href="{{ site.baseurl }}/" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
+                <a href="{{ site.baseurl }}/tentang" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Tentang</a>
+                <a href="{{ site.baseurl }}/pengurus" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
+                <a href="{{ site.baseurl }}/rilis" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
             </nav>
-            <!-- Tombol CTA Desktop, ditandai sebagai aktif -->
-            <a href="/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md">Kartu</a>
+            <a href="{{ site.baseurl }}/kartu" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md">Kartu</a>
             <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
         </div>
-        <!-- Navigasi Mobile -->
         <div id="mobile-menu" class="hidden md:hidden cta-gradient">
-            <a href="/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
-            <a href="/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
-            <a href="/pengurus" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Pengurus</a>
-            <a href="/rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Rilis</a>
-            <div class="p-4"><a href="/kartu" class="block w-full text-center bg-white text-blue-600 px-5 py-3 rounded-full font-bold text-base">Kartu</a></div>
+            <a href="{{ site.baseurl }}/" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
+            <a href="{{ site.baseurl }}/tentang" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
+            <a href="{{ site.baseurl }}/pengurus" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Pengurus</a>
+            <a href="{{ site.baseurl }}/rilis" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Rilis</a>
+            <div class="p-4"><a href="{{ site.baseurl }}/kartu" class="block w-full text-center bg-[#FFCB05] text-black px-5 py-3 rounded-full font-bold text-base">Kartu</a></div>
         </div>
     </header>
 
     <!-- ===== KONTEN UTAMA HALAMAN KEANGGOTAAN ===== -->
     <main class="pt-24 md:pt-28 pb-16 md:pb-24">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header Halaman -->
             <header class="text-center mb-12 md:mb-16 animate-on-scroll">
                 <h3 class="text-sm font-bold uppercase text-[#0973D6] tracking-wider mb-2">KARTU</h3>
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">Tanda Anggota PMII</h1>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">Tanda Keanggotaan</h1>
             </header>
             
-            <!-- Wrapper untuk Form, DIHAPUS: bg, border, shadow, padding -->
             <div class="max-w-2xl mx-auto">
-                <!-- Formspree akan menangani pengiriman data. Pastikan URL action sudah benar. -->
-                <form id="registration-form" action="https://formspree.io/f/mjkrdeqv" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form id="registration-form" class="space-y-6">
+                    <!-- Input fields (sama seperti sebelumnya) -->
+                    <div class="animate-on-scroll"><label for="nama-lengkap" class="block text-sm font-medium text-gray-700 mb-1.5">Nama Lengkap</label><input type="text" id="nama-lengkap" name="Nama Lengkap" placeholder="Nama Lengkap" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
+                    <div class="animate-on-scroll"><label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label><input type="email" id="email" name="Email" placeholder="email@gmail.com" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
+                    <div class="animate-on-scroll"><label for="telepon" class="block text-sm font-medium text-gray-700 mb-1.5">Telepon</label><input type="tel" id="telepon" name="Telepon" placeholder="081234567890" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
+                    <div class="animate-on-scroll"><label for="rayon" class="block text-sm font-medium text-gray-700 mb-1.5">Rayon/Fakultas</label><input type="text" id="rayon" name="Rayon/Fakultas" placeholder="Rayon Al-Jazari Fakultas Teknik" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
+                    <div class="animate-on-scroll"><label for="komisariat" class="block text-sm font-medium text-gray-700 mb-1.5">Komisariat/Kampus</label><input type="text" id="komisariat" name="Komisariat/Kampus" placeholder="Komisariat Universitas Mataram" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
+                    <div class="animate-on-scroll"><label for="cabang" class="block text-sm font-medium text-gray-700 mb-1.5">Cabang (Kabupaten/Kota)</label><input type="text" id="cabang" name="Cabang" placeholder="Cabang Kota Mataram" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required></div>
+                    <div class="animate-on-scroll"><label class="block text-sm font-medium text-gray-700 mb-1.5">Sertifikat MAPABA (jpg/png)</label><label for="sertifikat-mapaba" class="w-full flex items-center gap-3 p-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer transition hover:border-[#0973D6] hover:bg-blue-50"><i data-lucide="upload-cloud" class="w-5 h-5 text-gray-500"></i><span class="text-sm text-gray-500 file-name">Pilih file...</span></label><input type="file" id="sertifikat-mapaba" name="Sertifikat MAPABA" class="hidden" accept="image/jpeg, image/png" required></div>
+                    <div class="animate-on-scroll"><label class="block text-sm font-medium text-gray-700 mb-1.5">Foto 4x6 (jpg/png)</label><label for="foto" class="w-full flex items-center gap-3 p-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer transition hover:border-[#0973D6] hover:bg-blue-50"><i data-lucide="image" class="w-5 h-5 text-gray-500"></i><span class="text-sm text-gray-500 file-name">Pilih file...</span></label><input type="file" id="foto" name="Foto" class="hidden" accept="image/jpeg, image/png" required></div>
                     
-                    <!-- Input: Nama Lengkap -->
-                    <div class="animate-on-scroll">
-                        <label for="nama-lengkap" class="block text-sm font-medium text-gray-700 mb-1.5">Nama Lengkap</label>
-                        <input type="text" id="nama-lengkap" name="Nama Lengkap" placeholder="Ahmad Muzakkir" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required>
-                    </div>
+                    <div id="status-message" class="message-box"></div>
 
-                    <!-- Input: Email -->
-                    <div class="animate-on-scroll">
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
-                        <input type="email" id="email" name="Email" placeholder="ahmadmuzakkir@gmail.com" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required>
-                    </div>
-
-                    <!-- Input: Telepon -->
-                    <div class="animate-on-scroll">
-                        <label for="telepon" class="block text-sm font-medium text-gray-700 mb-1.5">Telepon</label>
-                        <input type="tel" id="telepon" name="Telepon" placeholder="081234567890" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required>
-                    </div>
-
-                    <!-- Input: Rayon/Fakultas -->
-                    <div class="animate-on-scroll">
-                        <label for="rayon" class="block text-sm font-medium text-gray-700 mb-1.5">Rayon/Fakultas</label>
-                        <input type="text" id="rayon" name="Rayon/Fakultas" placeholder="Rayon Ibnu Rusyd Fakultas Syari'ah" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required>
-                    </div>
-
-                    <!-- Input: Komisariat/Kampus -->
-                    <div class="animate-on-scroll">
-                        <label for="komisariat" class="block text-sm font-medium text-gray-700 mb-1.5">Komisariat/Kampus</label>
-                        <input type="text" id="komisariat" name="Komisariat/Kampus" placeholder="Komisariat IAI Hamzanwadi Pancor" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required>
-                    </div>
-
-                    <!-- Input: Cabang -->
-                    <div class="animate-on-scroll">
-                        <label for="cabang" class="block text-sm font-medium text-gray-700 mb-1.5">Cabang (Kabupaten/Kota)</label>
-                        <input type="text" id="cabang" name="Cabang" placeholder="Cabang Kabupaten Lombok Timur" class="form-input w-full text-base p-3 border border-gray-300 rounded-lg placeholder:text-sm placeholder:text-gray-400 transition" required>
-                    </div>
-
-                    <!-- Input: Upload Sertifikat MAPABA -->
-                    <div class="animate-on-scroll">
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Sertifikat MAPABA (jpg/png)</label>
-                        <label for="sertifikat-mapaba" class="w-full flex items-center gap-3 p-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer transition hover:border-[#0973D6] hover:bg-blue-50">
-                            <i data-lucide="upload-cloud" class="w-5 h-5 text-gray-500"></i>
-                            <span class="text-sm text-gray-500 file-name">Pilih file...</span>
-                        </label>
-                        <input type="file" id="sertifikat-mapaba" name="Sertifikat MAPABA" class="hidden" accept="image/jpeg, image/png" required>
-                    </div>
-
-                    <!-- Input: Upload Foto -->
-                    <div class="animate-on-scroll">
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Foto Ukuran 4x6 (jpg/png)</label>
-                        <label for="foto" class="w-full flex items-center gap-3 p-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer transition hover:border-[#0973D6] hover:bg-blue-50">
-                            <i data-lucide="image" class="w-5 h-5 text-gray-500"></i>
-                            <span class="text-sm text-gray-500 file-name">Pilih file...</span>
-                        </label>
-                        <input type="file" id="foto" name="Foto" class="hidden" accept="image/jpeg, image/png" required>
-                    </div>
-                    
-                    <!-- Tombol Submit -->
                     <div class="pt-4 animate-on-scroll">
-                        <button type="submit" class="w-full bg-[#0973D6] text-white font-bold text-base p-3.5 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:bg-[#ffcb05] hover:text-black hover:scale-105">
-                            Kirim
+                        <button type="button" id="submit-button" class="w-full bg-[#0973D6] text-white font-bold text-base p-3.5 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:bg-[#ffcb05] hover:text-black hover:scale-105">
+                            <span id="button-text">Kirim</span>
+                            <div id="button-spinner" class="spinner w-6 h-6 border-4 hidden" style="border-top-color: #0973D6;"></div>
                         </button>
                     </div>
                 </form>
@@ -177,16 +102,14 @@ title: Kartu
 
     <!-- ===== FOOTER ===== -->
     <footer id="kontak" class="cta-gradient text-white">
-        <!-- Konten footer sama dengan halaman lain untuk konsistensi -->
+        <!-- Konten footer tidak berubah -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
             <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
             <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan.</p>
-            <div class="mb-12 flex justify-center">
-                <img src="assets/images/apk.png" alt="Tangkapan layar aplikasi Permaisindo" class="h-auto max-h-[400px] md:max-h-[500px] rounded-2xl" loading="lazy">
-            </div>
+            <div class="mb-12 flex justify-center"><img src="assets/images/apk.png" alt="Tangkapan layar aplikasi Permaisindo" class="h-auto max-h-[400px] md:max-h-[500px] rounded-2xl" loading="lazy"></div>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="/koleksi" class="bg-[#FFCB05] text-black px-8 py-3 rounded-full font-bold text-base shadow-lg w-full sm:w-auto transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Koleksi</a>
-                <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-[#FFCB05] text-[#FFCB05] px-8 py-3 rounded-full font-bold text-base w-full sm:w-auto transition-all duration-300 hover:bg-[#FFCB05] hover:text-black hover:scale-105 hover:-translate-y-0.5">Download Aplikasi</a>
+                <a href="{{ site.baseurl }}/koleksi" class="bg-[#FFCB05] text-black px-8 py-3 rounded-full font-bold text-base shadow-lg w-full sm:w-auto transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Koleksi</a>
+                <a href="https://play.google.com/store/apps/details?id=com.pmii.permaisindo" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-[#FFCB05] text-[#FFCB05] px-8 py-3 rounded-full font-bold text-base w-full sm:w-auto transition-all duration-300 hover:bg-[#FFCB05] hover:text-black hover:scale-105 hover:-translate-y-0.5">Download Aplikasi</a>
             </div>
         </div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
@@ -202,68 +125,162 @@ title: Kartu
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- Inisialisasi Elemen ---
+        const form = document.getElementById('registration-form');
+        const submitButton = document.getElementById('submit-button');
+        const statusMessage = document.getElementById('status-message');
+        const buttonText = document.getElementById('button-text');
+        const buttonSpinner = document.getElementById('button-spinner');
+        
+        // URL Google Apps Script Anda
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyR1ggQDzSs7q6urboGyrYNWtgYinPSfbxncjNyyQUvsHbC7TAnlgQFq07xEHaBSY4r/exec';
+
+        // --- Logika dasar (preloader, menu, dll.) ---
         const preloader = document.getElementById('preloader');
+        if (preloader) { setTimeout(() => { preloader.style.transition = "opacity .5s ease"; preloader.style.opacity = "0"; preloader.addEventListener("transitionend", () => preloader.style.display = "none"); }, 500); }
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton) { mobileMenuButton.addEventListener("click", () => mobileMenu.classList.toggle("hidden")); }
         const yearSpan = document.getElementById('year');
-        const form = document.getElementById('registration-form');
-
-        // --- Logika Preloader ---
-        if (preloader) {
-            setTimeout(() => {
-                preloader.style.transition = "opacity .5s ease";
-                preloader.style.opacity = "0";
-                preloader.addEventListener("transitionend", () => preloader.style.display = "none");
-            }, 500);
-        }
-
-        // --- Logika Menu Mobile ---
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener("click", () => {
-                mobileMenu.classList.toggle("hidden");
-            });
-        }
-
-        // --- Set Tahun di Footer ---
-        if(yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
-        }
-
-        // --- Fungsi untuk Animasi saat Scroll ---
-        function setupScrollAnimations() {
-            const animatedElements = document.querySelectorAll(".animate-on-scroll");
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationDelay = `${index * 100}ms`;
-                        entry.target.classList.add("animate-slide-in-bottom");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            animatedElements.forEach(el => observer.observe(el));
-        }
-
-        // --- Logika untuk menampilkan nama file yang di-upload ---
-        if (form) {
-            form.querySelectorAll('input[type="file"]').forEach(input => {
-                input.addEventListener("change", function() {
-                    const fileName = this.files[0] ? this.files[0].name : "Pilih file...";
-                    // Cari elemen .file-name yang berada di dalam label yang sama dengan input
-                    const label = this.previousElementSibling;
-                    if (label) {
-                        const fileNameSpan = label.querySelector(".file-name");
-                        if (fileNameSpan) {
-                            fileNameSpan.textContent = fileName;
-                        }
-                    }
-                });
-            });
-        }
-
-        // --- Inisialisasi Ikon dan Animasi ---
+        if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+        function setupScrollAnimations() { const animatedElements = document.querySelectorAll(".animate-on-scroll"); const observer = new IntersectionObserver(entries => { entries.forEach((entry, index) => { if (entry.isIntersecting) { entry.target.style.animationDelay = `${index * 100}ms`; entry.target.classList.add("animate-slide-in-bottom"); observer.unobserve(entry.target); } }); }, { threshold: 0.1 }); animatedElements.forEach(el => observer.observe(el)); }
+        form.querySelectorAll('input[type="file"]').forEach(input => { input.addEventListener("change", function() { const fileName = this.files[0] ? this.files[0].name : "Pilih file..."; const label = this.closest('div').querySelector('label[for="' + this.id + '"]'); if (label) { const fileNameSpan = label.querySelector(".file-name"); if (fileNameSpan) { fileNameSpan.textContent = fileName; } } }); });
         lucide.createIcons();
         setupScrollAnimations();
+
+        const showMessage = (message, isError = false) => {
+            statusMessage.textContent = message;
+            statusMessage.className = `message-box ${isError ? 'error' : 'success'}`;
+            statusMessage.style.display = 'block';
+        };
+
+        const validateForm = () => {
+            let isValid = true;
+            form.querySelectorAll('[required]').forEach(field => {
+                field.classList.remove('border-red-500');
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('border-red-500');
+                }
+            });
+            return isValid;
+        };
+
+        // Fungsi ini sekarang hanya mengirim data, tidak lagi membuat PDF
+        const sendDataToScript = async () => {
+            try {
+                // 1. Kumpulkan semua data teks dari formulir
+                const formDataObject = {};
+                new FormData(form).forEach((value, key) => {
+                    if (typeof value === 'string') {
+                        formDataObject[key] = value;
+                    }
+                });
+
+                // 2. Buat PDF di browser untuk mendapatkan Base64-nya
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                const nama = formDataObject["Nama Lengkap"];
+                const sertifikatFile = document.getElementById('sertifikat-mapaba').files[0];
+                const fotoFile = document.getElementById('foto').files[0];
+
+                const readFileAsDataURL = (file) => new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = (error) => reject(new Error(`Gagal membaca file: ${file.name}`));
+                    reader.readAsDataURL(file);
+                });
+
+                const [sertifikatDataUrl, fotoDataUrl] = await Promise.all([
+                    readFileAsDataURL(sertifikatFile),
+                    readFileAsDataURL(fotoFile)
+                ]);
+
+                // Membuat PDF dengan data yang ada
+                doc.setFontSize(18).setFont('helvetica', 'bold').text('Formulir Pendaftaran Kader PMII', 105, 20, { align: 'center' });
+                doc.setFontSize(12);
+                let yPos = 40;
+                // Fungsi addText akan ditambahkan nanti setelah nomor anggota didapat
+                const addText = (label, value) => { 
+                    doc.setFont('helvetica', 'bold');
+                    doc.text(label, 20, yPos);
+                    doc.setFont('helvetica', 'normal');
+                    doc.text(String(value), 80, yPos); // Pastikan value adalah string
+                    yPos += 10; 
+                };
+                
+                // Tambahkan data ke PDF, nomor anggota akan ditambahkan oleh skrip
+                // Untuk sementara, kita buat PDF tanpa nomor anggota
+                addText('Nama Lengkap', nama);
+                addText('Email', formDataObject["Email"]);
+                addText('Telepon', formDataObject["Telepon"]);
+                addText('Rayon/Fakultas', formDataObject["Rayon/Fakultas"]);
+                addText('Komisariat/Kampus', formDataObject["Komisariat/Kampus"]);
+                addText('Cabang', formDataObject["Cabang"]);
+                yPos += 5;
+                doc.setFont('arial', 'bold').text('', 20, yPos); 
+                doc.addImage(fotoDataUrl, 'JPEG', 20, yPos + 5, 40, 60);
+                doc.text('', 100, yPos); 
+                doc.addImage(sertifikatDataUrl, 'JPEG', 100, yPos + 5, 80, (doc.getImageProperties(sertifikatDataUrl).height * 80) / doc.getImageProperties(sertifikatDataUrl).width);
+                
+                const pdfBase64 = doc.output('datauristring');
+
+                // 3. Siapkan payload untuk dikirim
+                const payload = {
+                    fileName: `Formulir-Pendaftaran-${nama.replace(/\s/g, '-')}.pdf`,
+                    file: pdfBase64,
+                    formData: formDataObject
+                };
+
+                // 4. Kirim ke Google Apps Script
+                const response = await fetch(googleScriptUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                });
+                
+                return await response.json();
+
+            } catch (error) {
+                // Tangkap error dari pembuatan PDF atau pengiriman
+                throw new Error(`Gagal memproses data: ${error.message}`);
+            }
+        };
+
+        if (submitButton) {
+            submitButton.addEventListener('click', async () => {
+                statusMessage.style.display = 'none';
+
+                if (!validateForm()) {
+                    showMessage("Harap isi semua kolom yang wajib diisi.", true);
+                    return;
+                }
+
+                buttonText.classList.add('hidden');
+                buttonSpinner.classList.remove('hidden');
+                submitButton.disabled = true;
+
+                try {
+                    const result = await sendDataToScript();
+
+                    if (result.status !== 'success') {
+                        throw new Error(result.message || "Gagal mengirim data ke server.");
+                    }
+
+                    showMessage(result.message); // Tampilkan pesan sukses dari server
+                    form.reset();
+                    form.querySelectorAll('.file-name').forEach(span => span.textContent = 'Pilih file...');
+
+                } catch (error) {
+                    console.error("Detail Kesalahan:", error);
+                    showMessage(`Terjadi kesalahan: ${error.message}. Silakan coba lagi.`, true);
+                } finally {
+                    buttonText.classList.remove('hidden');
+                    buttonSpinner.classList.add('hidden');
+                    submitButton.disabled = false;
+                }
+            });
+        }
     });
     </script>
 </body>
