@@ -9,26 +9,28 @@
     <meta name="keywords" content="PMII, Bali Nusra, PKC PMII, {{ page.title }}">
 
     <!-- ===== META TAG OPEN GRAPH (OG) UNTUK PRATINJAU MEDIA SOSIAL ===== -->
-    <!-- Perubahan: Tag ini ditambahkan agar saat link dibagikan, gambar dan judul muncul -->
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
     {% if page.image %}
-    <!-- Perubahan: Memastikan URL gambar absolut untuk OG, mengambil dari folder /assets/rilis/ -->
-    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/rilis/{{ page.image }}" />
+      <!-- Logika untuk menangani URL absolut dan path relatif -->
+      {% if page.image contains "://" %}
+        {% assign final_image_url = page.image %}
+      {% else %}
+        {% assign final_image_url = site.url | append: site.baseurl | append: '/assets/rilis/' | append: page.image %}
+      {% endif %}
+      <meta property="og:image" content="{{ final_image_url }}" />
+      <meta name="twitter:image" content="{{ final_image_url }}">
     {% else %}
-    <!-- Fallback jika tidak ada gambar di post, gunakan gambar default -->
-    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
+      <!-- Gambar fallback jika tidak ada gambar di post -->
+      <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
+      <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
     {% endif %}
     <meta property="og:site_name" content="PKC PMII Bali Nusra" />
-    <!-- Untuk Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ page.title }}">
     <meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
-    {% if page.image %}
-    <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/rilis/{{ page.image }}">
-    {% endif %}
     <!-- ===== AKHIR META TAG OPEN GRAPH ===== -->
 
     <!-- Ikon, Font, dan Library Eksternal -->
@@ -41,37 +43,13 @@
 
     <!-- Style Kustom -->
     <style>
-        /* Font dasar dan anti-aliasing untuk teks yang lebih halus */
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: #ffffff;
-        }
-        /* Gradient untuk header dan footer */
-        .cta-gradient {
-            background: linear-gradient(90deg, #0973D6, #2918A9);
-        }
-        /* Animasi loading spinner */
-        .spinner {
-            width: 56px;
-            height: 56px;
-            border: 8px solid rgba(255, 255, 255, .3);
-            border-top-color: #FFCB05;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background-color: #ffffff; }
+        .cta-gradient { background: linear-gradient(90deg, #0973D6, #2918A9); }
+        .spinner { width: 56px; height: 56px; border: 8px solid rgba(255, 255, 255, .3); border-top-color: #FFCB05; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        
-        /* Styling khusus untuk blockquote di dalam konten artikel */
         .prose blockquote { border-left-color: #0973D6; font-style: italic; }
         .prose cite { display: block; text-align: right; font-size: .8em; margin-top: .5em; font-style: normal; }
-
-        /* Perubahan: Menambahkan text-align justify dan jarak antar paragraf untuk konten artikel */
-        .prose p {
-            text-align: justify;
-            margin-bottom: 1.25em; /* Menambah jarak di bawah setiap paragraf */
-        }
+        .prose p { text-align: justify; margin-bottom: 1.25em; }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -84,25 +62,16 @@
     <!-- ===== HEADER & NAVIGASI ===== -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 cta-gradient shadow-xl">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <!-- Logo -->
             <a href="{{ '/' | relative_url }}"><img src="{{ '/assets/images/logo1.png' | relative_url }}" alt="Logo PKC PMII Bali Nusra" class="h-10 md:h-12"></a>
-            
-            <!-- Navigasi Desktop -->
             <nav id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <a href="{{ '/' | relative_url }}" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Beranda</a>
                 <a href="{{ '/tentang' | relative_url }}" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Tentang</a>
                 <a href="{{ '/pengurus' | relative_url }}" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Pengurus</a>
                 <a href="{{ '/rilis' | relative_url }}" class="text-white text-sm font-semibold hover:text-yellow-300 transition-colors">Rilis</a>
             </nav>
-            
-            <!-- Tombol CTA Desktop -->
             <a href="{{ '/kartu' | relative_url }}" class="hidden md:block bg-[#FFCB05] text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-300 hover:bg-yellow-400 hover:scale-105 hover:-translate-y-0.5">Kartu</a>
-            
-            <!-- Tombol Menu Mobile -->
             <button id="mobile-menu-button" class="md:hidden"><i data-lucide="menu" class="w-6 h-6 text-white"></i></button>
         </div>
-        
-        <!-- Navigasi Mobile (toggle) -->
         <div id="mobile-menu" class="hidden md:hidden cta-gradient">
             <a href="{{ '/' | relative_url }}" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Beranda</a>
             <a href="{{ '/tentang' | relative_url }}" class="block text-center py-3 px-6 text-white text-base hover:bg-white/10 transition-colors">Tentang</a>
@@ -115,12 +84,9 @@
     <!-- ===== KONTEN UTAMA ===== -->
     <main class="pt-24 md:pt-28">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-            <!-- Wrapper artikel untuk membatasi lebar konten -->
             <article class="max-w-4xl mx-auto">
-                <!-- Header Artikel: Judul, tanggal, penulis -->
                 <header class="mb-10 md:mb-12 text-center">
                     <div class="flex justify-between items-center mb-4">
-                        <!-- Perubahan: Teks "Kembali ke Rilis" diganti menjadi "Kembali" -->
                         <a href="{{ '/rilis' | relative_url }}" class="text-sm text-[#0973D6] hover:underline flex items-center gap-1">
                             <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali
                         </a>
@@ -128,7 +94,6 @@
                     </div>
                     <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight md:leading-tight">{{ page.title }}</h1>
                     {% if page.author %}
-                        <!-- Perubahan: Teks "Oleh:" diganti menjadi "Kreator:" -->
                         <p class="mt-4 text-base text-gray-600">Kreator: <span class="font-semibold">{{ page.author }}</span></p>
                     {% endif %}
                 </header>
@@ -136,18 +101,15 @@
                 <!-- Gambar Utama Artikel (jika ada) -->
                 {% if page.image %}
                 <figure class="mb-8 overflow-hidden rounded-xl shadow-lg">
-                    <!-- Perubahan: Jalur gambar diubah untuk selalu mengambil dari folder /assets/rilis/ -->
-                    <!-- Pastikan di front matter post, Anda hanya menulis nama filenya, contoh: image: nama-gambar.png -->
-                    <img src="{{ '/assets/rilis/' | append: page.image | relative_url }}" class="w-full h-auto object-cover" alt="{{ page.image_caption | default: page.title }}" loading="lazy">
+                    <!-- Logika cerdas untuk menangani URL absolut dan path relatif -->
+                    <img src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ '/assets/rilis/' | append: page.image | relative_url }}{% endif %}" class="w-full h-auto object-cover" alt="{{ page.image_caption | default: page.title }}" loading="lazy">
                 </figure>
                 {% if page.image_caption %}
                     <figcaption class="text-center text-xs sm:text-sm text-gray-500 -mt-6 mb-8">{{ page.image_caption }}</figcaption>
                 {% endif %}
                 {% endif %}
 
-                <!-- Konten Artikel dari file Markdown -->
-                <!-- Kelas 'prose' dari Tailwind menata format teks secara otomatis -->
-                <!-- Catatan: Perataan justify dan jarak paragraf diatur di CSS bagian <head> -->
+                <!-- Konten Artikel -->
                 <div class="prose prose-sm sm:prose-base lg:prose-lg max-w-none leading-relaxed">
                     {{ content }}
                 </div>
@@ -165,7 +127,6 @@
 
     <!-- ===== FOOTER ===== -->
     <footer id="kontak" class="cta-gradient text-white">
-        <!-- Konten footer dibuat konsisten dengan halaman lain -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
             <h2 class="text-2xl lg:text-3xl font-bold mb-4">Download Sekarang!</h2>
             <p class="text-base text-white/80 mb-8 max-w-3xl mx-auto">Aplikasi Mobile Permaisindo, Platform Aktivis Pergerakan.</p>
@@ -189,14 +150,14 @@
     <!-- ===== JAVASCRIPT ===== -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Seleksi elemen DOM
+        // --- Inisialisasi Elemen ---
         const preloader = document.getElementById('preloader');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const yearSpan = document.getElementById('year');
         const shareContainer = document.getElementById('share-buttons-detail');
 
-        // Sembunyikan preloader setelah halaman dimuat
+        // Sembunyikan preloader
         if (preloader) {
             setTimeout(() => {
                 preloader.style.transition = "opacity .5s ease";
@@ -205,26 +166,25 @@
             }, 500);
         }
 
-        // Toggle menu mobile saat tombol diklik
+        // Toggle menu mobile
         if (mobileMenuButton) {
             mobileMenuButton.addEventListener("click", () => {
                 mobileMenu.classList.toggle("hidden");
             });
         }
 
-        // Set tahun copyright secara dinamis
+        // Set tahun copyright
         if(yearSpan) {
             yearSpan.textContent = new Date().getFullYear();
         }
         
-        // Tampilkan notifikasi custom (misal: "Link disalin")
+        // Notifikasi custom
         function showNotification(message, type = "success") {
             const notification = document.createElement("div");
             const bgColor = type === "success" ? "bg-green-500" : "bg-red-600";
             notification.className = `fixed bottom-5 right-5 text-white text-sm py-3 px-5 rounded-lg shadow-xl z-[101] transition-all duration-300 transform translate-y-10 opacity-0 ${bgColor}`;
             notification.textContent = message;
             document.body.appendChild(notification);
-
             setTimeout(() => notification.classList.remove("translate-y-10", "opacity-0"), 10);
             setTimeout(() => {
                 notification.classList.add("opacity-0");
@@ -232,7 +192,7 @@
             }, 3000);
         }
 
-        // Buat dan kelola tombol bagikan
+        // Buat tombol bagikan
         function createShareButtons(container, url, text) {
             const shareText = `Simak rilis terbaru: "${text}"`;
             const platforms = [
@@ -250,7 +210,6 @@
             
             container.querySelectorAll('.share-button').forEach(button => {
                 button.addEventListener("click", event => {
-                    // Logika untuk menyalin link
                     if (button.dataset.action === 'copy') {
                         event.preventDefault();
                         navigator.clipboard.writeText(url).then(() => {
@@ -259,17 +218,16 @@
                             showNotification('Gagal menyalin link.', 'error');
                         });
                     }
-                    // Untuk platform lain, biarkan link default bekerja
                 });
             });
-            lucide.createIcons(); // Render ulang ikon setelah ditambahkan ke DOM
+            lucide.createIcons();
         }
 
-        // Inisialisasi tombol bagikan jika kontainernya ada
+        // Inisialisasi tombol bagikan
         if (shareContainer) {
             createShareButtons(shareContainer, '{{ page.url | absolute_url }}', '{{ page.title | escape }}');
         } else {
-            lucide.createIcons(); // Render ikon jika tidak ada tombol bagikan
+            lucide.createIcons();
         }
     });
     </script>
