@@ -45,7 +45,7 @@ plugins:
   - jekyll-seo-tag
 
 # Aturan untuk membuat URL postingan yang rapi dan SEO-friendly.
-permalink: /rilis/:year/:month/:day/:title.html
+permalink: /rilis/:year/:month/:day/:title
 
 #======================================================
 # EXCLUDE (PENGECUALIAN)
