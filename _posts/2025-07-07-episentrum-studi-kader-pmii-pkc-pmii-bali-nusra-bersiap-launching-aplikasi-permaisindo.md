@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Episentrum Studi Kader PMII, PKC PMII Bali Nusra Bersiap Launching Aplikasi Permaisindo"
+title: "Episentrum Studi Kader, PKC PMII Bali Nusra Bersiap Launching Aplikasi Permaisindo"
 date: 2025-07-07 01:08:53 +0800
 author: "PKC PMII Bali Nusra"
-image: "https://raw.githubusercontent.com/websitepmiibalinusra/websitepmiibalinusra.github.io/main/assets/rilis/episentrum-studi-kader-pmii-pkc-pmii-bali-nusra-bersiap-launching-aplikasi-permaisindo.png"
+image: "https://raw.githubusercontent.com/websitepmiibalinusra/websitepmiibalinusra.github.io/main/assets/rilis/episentrum-studi-kader-pkc-pmii-bali-nusra-bersiap-launching-aplikasi-permaisindo.png"
 image_caption: "Aplikasi Mobile Permaisindo"
 ---
 
