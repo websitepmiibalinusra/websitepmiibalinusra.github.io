@@ -8,29 +8,37 @@
     <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
     <meta name="keywords" content="PMII, Bali Nusra, PKC PMII, {{ page.title }}">
 
-    <!-- ===== META TAG OPEN GRAPH (OG) UNTUK PRATINJAU MEDIA SOSIAL ===== -->
-    <meta property="og:title" content="{{ page.title }}" />
-    <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}" />
+    <!-- ===== META TAG OPEN GRAPH (OG) UNTUK PRATINJAU MEDIA SOSIAL (DIPERBAIKI) ===== -->
+    <meta property="og:title" content="{{ page.title | escape }}" />
+    <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
-    {% if page.image %}
-      <!-- Logika untuk menangani URL absolut dan path relatif -->
-      {% if page.image contains "://" %}
-        {% assign final_image_url = page.image %}
-      {% else %}
-        {% assign final_image_url = site.url | append: site.baseurl | append: '/assets/rilis/' | append: page.image %}
-      {% endif %}
-      <meta property="og:image" content="{{ final_image_url }}" />
-      <meta name="twitter:image" content="{{ final_image_url }}">
-    {% else %}
-      <!-- Gambar fallback jika tidak ada gambar di post -->
-      <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
-      <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
-    {% endif %}
     <meta property="og:site_name" content="PKC PMII Bali Nusra" />
+    
+    {%- comment -%}
+    <!-- ================================================================== -->
+    <!-- PERUBAHAN UTAMA ADA DI BAGIAN INI -->
+    <!-- Logika ini disederhanakan untuk memastikan URL gambar selalu absolut dan valid. -->
+    <!-- ================================================================== -->
+    {%- endcomment -%}
+    {% if page.image %}
+        {%- assign image_path = '/assets/rilis/' | append: page.image -%}
+        <meta property="og:image" content="{{ image_path | absolute_url }}" />
+        <meta name="twitter:image" content="{{ image_path | absolute_url }}">
+    {% else %}
+        <!-- Gambar fallback jika tidak ada gambar di post -->
+        <meta property="og:image" content="{{ '/assets/images/logo1.png' | absolute_url }}" />
+        <meta name="twitter:image" content="{{ '/assets/images/logo1.png' | absolute_url }}" />
+    {% endif %}
+    
+    <!-- Menambahkan tag ukuran gambar untuk membantu Facebook/WhatsApp -->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+    <meta name="twitter:title" content="{{ page.title | escape }}">
+    <meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}">
     <!-- ===== AKHIR META TAG OPEN GRAPH ===== -->
 
     <!-- Ikon, Font, dan Library Eksternal -->
@@ -101,8 +109,7 @@
                 <!-- Gambar Utama Artikel (jika ada) -->
                 {% if page.image %}
                 <figure class="mb-8 overflow-hidden rounded-xl shadow-lg">
-                    <!-- Logika cerdas untuk menangani URL absolut dan path relatif -->
-                    <img src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ '/assets/rilis/' | append: page.image | relative_url }}{% endif %}" class="w-full h-auto object-cover" alt="{{ page.image_caption | default: page.title }}" loading="lazy">
+                    <img src="{{ '/assets/rilis/' | append: page.image | relative_url }}" class="w-full h-auto object-cover" alt="{{ page.image_caption | default: page.title }}" loading="lazy">
                 </figure>
                 {% if page.image_caption %}
                     <figcaption class="text-center text-xs sm:text-sm text-gray-500 -mt-6 mb-8">{{ page.image_caption }}</figcaption>
@@ -192,6 +199,33 @@
             }, 3000);
         }
 
+        // Fungsi Salin Link yang lebih kompatibel
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showNotification('Link berhasil disalin!');
+                }, () => {
+                    showNotification('Gagal menyalin link.', 'error');
+                });
+            } else {
+                // Fallback untuk environment tidak aman (seperti iframe)
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showNotification('Link berhasil disalin!');
+                } catch (err) {
+                    showNotification('Gagal menyalin link.', 'error');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
         // Buat tombol bagikan
         function createShareButtons(container, url, text) {
             const shareText = `Simak rilis terbaru: "${text}"`;
@@ -212,11 +246,7 @@
                 button.addEventListener("click", event => {
                     if (button.dataset.action === 'copy') {
                         event.preventDefault();
-                        navigator.clipboard.writeText(url).then(() => {
-                            showNotification(`Link berhasil disalin!`);
-                        }, () => {
-                            showNotification('Gagal menyalin link.', 'error');
-                        });
+                        copyToClipboard(url);
                     }
                 });
             });
