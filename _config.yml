@@ -10,10 +10,11 @@ description: >- # Tanda >- mengabaikan baris baru, bagus untuk deskripsi panjang
   Website Resmi Pengurus Koordinator Cabang (PKC) Pergerakan Mahasiswa Islam Indonesia (PMII) Bali-Nusa Tenggara.
   Mendorong inovasi dan pergerakan mahasiswa yang berlandaskan Ahlussunnah wal Jama'ah.
 
-# URL lengkap situs Anda untuk produksi.
-url: "https://pmiibalinusra.or.id" 
-# Biarkan kosong karena situs berada di root domain.
-baseurl: "" 
+# URL lengkap situs Anda untuk produksi. PASTIKAN BENAR.
+# Tanpa garis miring (/) di akhir.
+url: "https://pmiibalinusra.or.id"
+# Biarkan kosong ("") karena situs berada di root domain.
+baseurl: ""
 
 #======================================================
 # PENGATURAN MEDIA SOSIAL
@@ -31,18 +32,13 @@ social:
 #======================================================
 
 # Karena Anda menggunakan layout HTML kustom dengan Tailwind CSS,
-# tema Jekyll (seperti Minima) tidak diperlukan dan sebaiknya dinonaktifkan 
-# untuk menghindari konflik style. `theme: null` adalah cara terbaik.
+# tema Jekyll (seperti Minima) tidak diperlukan. `theme: null` adalah pengaturan yang benar.
 theme: null
 
 # Plugin yang digunakan untuk fungsionalitas tambahan.
 plugins:
-  # Membuat feed RSS secara otomatis di /feed.xml untuk pelanggan berita.
   - jekyll-feed
-  # SANGAT DIREKOMENDASIKAN: Membuat tag meta SEO (title, description, 
-  # canonical URL, Open Graph) secara otomatis untuk setiap halaman. 
-  # Ini lebih baik daripada menulisnya manual di setiap file.
-  - jekyll-seo-tag
+  - jekyll-seo-tag # Plugin ini akan menangani semua tag Open Graph & Twitter Card.
 
 # Aturan untuk membuat URL postingan yang rapi dan SEO-friendly.
 permalink: /rilis/:year/:month/:day/:title
@@ -60,8 +56,5 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+  - vendor/
   - README.md
