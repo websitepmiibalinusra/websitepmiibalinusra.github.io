@@ -16,6 +16,10 @@ url: "https://pmiibalinusra.or.id"
 # Biarkan kosong ("") karena situs berada di root domain.
 baseurl: ""
 
+# Gambar logo default yang akan digunakan oleh jekyll-seo-tag jika
+# sebuah halaman tidak memiliki 'image' sendiri. Sangat direkomendasikan.
+logo: /assets/images/logo1.png
+
 #======================================================
 # PENGATURAN MEDIA SOSIAL
 #======================================================
