@@ -17,18 +17,22 @@
     
     {%- comment -%}
     <!-- ================================================================== -->
-    <!-- PERUBAHAN UTAMA ADA DI BAGIAN INI -->
-    <!-- Logika ini disederhanakan untuk memastikan URL gambar selalu absolut dan valid. -->
+    <!-- LOGIKA PENGAMBILAN GAMBAR DIKEMBALIKAN KE VERSI ASLI SESUAI PERMINTAAN -->
     <!-- ================================================================== -->
     {%- endcomment -%}
     {% if page.image %}
-        {%- assign image_path = '/assets/rilis/' | append: page.image -%}
-        <meta property="og:image" content="{{ image_path | absolute_url }}" />
-        <meta name="twitter:image" content="{{ image_path | absolute_url }}">
+      <!-- Logika untuk menangani URL absolut dan path relatif -->
+      {% if page.image contains "://" %}
+        {% assign final_image_url = page.image %}
+      {% else %}
+        {% assign final_image_url = site.url | append: site.baseurl | append: '/assets/rilis/' | append: page.image %}
+      {% endif %}
+      <meta property="og:image" content="{{ final_image_url }}" />
+      <meta name="twitter:image" content="{{ final_image_url }}">
     {% else %}
-        <!-- Gambar fallback jika tidak ada gambar di post -->
-        <meta property="og:image" content="{{ '/assets/images/logo1.png' | absolute_url }}" />
-        <meta name="twitter:image" content="{{ '/assets/images/logo1.png' | absolute_url }}" />
+      <!-- Gambar fallback jika tidak ada gambar di post -->
+      <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
+      <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
     {% endif %}
     
     <!-- Menambahkan tag ukuran gambar untuk membantu Facebook/WhatsApp -->
@@ -109,7 +113,8 @@
                 <!-- Gambar Utama Artikel (jika ada) -->
                 {% if page.image %}
                 <figure class="mb-8 overflow-hidden rounded-xl shadow-lg">
-                    <img src="{{ '/assets/rilis/' | append: page.image | relative_url }}" class="w-full h-auto object-cover" alt="{{ page.image_caption | default: page.title }}" loading="lazy">
+                    <!-- Logika cerdas untuk menangani URL absolut dan path relatif -->
+                    <img src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ '/assets/rilis/' | append: page.image | relative_url }}{% endif %}" class="w-full h-auto object-cover" alt="{{ page.image_caption | default: page.title }}" loading="lazy">
                 </figure>
                 {% if page.image_caption %}
                     <figcaption class="text-center text-xs sm:text-sm text-gray-500 -mt-6 mb-8">{{ page.image_caption }}</figcaption>
