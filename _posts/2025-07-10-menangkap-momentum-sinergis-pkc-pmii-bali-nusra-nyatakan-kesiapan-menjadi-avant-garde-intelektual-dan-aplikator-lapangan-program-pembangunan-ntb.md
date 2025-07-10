@@ -8,7 +8,11 @@ image_caption: "Ketua PKC dalam Penyerahan Bantuan Korban Banjir Mataram"
 ---
 
 MATARAM, NTB – Menanggapi konvergensi visi yang luar biasa antara pimpinan Ikatan Alumni Pergerakan Mahasiswa Islam Indonesia (IKA PMII) dan Pemerintah Provinsi NTB dalam acara pelantikan di Lombok Raya Hotel, Ketua Pengurus Koordinator Cabang (PKC) PMII Bali Nusra, Sahabat Ahmad Muzakkir, menyatakan kesiapan penuh dari kader-kader aktif untuk menjadi garda terdepan dalam implementasi agenda pembangunan daerah.
+
 Pernyataan ini merupakan respons langsung terhadap narasi strategis yang mengemuka dalam acara tersebut."Kami di PKC PMII Bali Nusra tidak melihat tiga pernyataan ini sebagai pidato-pidato yang terpisah, melainkan sebagai sebuah arsitektur sinergi yang utuh dan sangat solid," ujar Ahmad Muzakkir.
+
 "Tawaran konkret dari Bapak Gubernur, yang disambut oleh kesiapan para senior kami di IKA PMII NTB, dan direstui oleh PB IKA PMII, adalah sebuah panggilan sejarah bagi kami, kader-kader aktif, untuk mengambil peran sebagai eksekutor dan operator di lapangan."
-Muzakkir memposisikan PMII sebagai jembatan vital yang menghubungkan gagasan besar dengan realitas di akar rumput. "Di sinilah letak relevansi eksistensial kami sebagai organisasi kaderisasi," tegasnya. 
+
+Muzakkir memposisikan PMII sebagai jembatan vital yang menghubungkan gagasan besar dengan realitas di akar rumput. "Di sinilah letak relevansi eksistensial kami sebagai organisasi kaderisasi," tegasnya.
+
 "Kami siap menjadi avant-garde intelektual sekaligus aplikator lapangan. Kampus adalah laboratorium Fikir kami, dan desa-desa di NTB akan menjadi ladang Amal Saleh kami. Kami siap menerjemahkan diskursus tingkat tinggi tentang multiplier effect pariwisata dan pengentasan kemiskinan ke dalam modul-modul pendampingan masyarakat yang aplikatif."
