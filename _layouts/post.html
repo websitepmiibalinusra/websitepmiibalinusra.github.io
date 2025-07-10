@@ -204,7 +204,7 @@
 
         // Buat tombol bagikan
         function createShareButtons(container, url, text) {
-            const shareText = `Simak rilis terbaru: "${text}"`;
+            const shareText = `Rilis dengan Judul "${text-bold}"`;
             const platforms = [
                 { name: "WhatsApp", icon: "message-circle", type: "lucide", color: "bg-green-500", href: `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + url)}`, action: 'share' },
                 { name: "X", icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231L18.244 2.25zM17.5 19.5h1.5l-8.5-11.25h-1.6l8.6 11.25z"></path></svg>`, type: "svg", color: "bg-black", href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`, action: 'share' },
