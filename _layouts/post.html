@@ -1,49 +1,20 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-    <!-- Konfigurasi dasar, SEO, dan metadata halaman -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} - PKC PMII Bali Nusra</title>
-    <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
-    <meta name="keywords" content="PMII, Bali Nusra, PKC PMII, {{ page.title }}">
-
-    <!-- ===== META TAG OPEN GRAPH (OG) UNTUK PRATINJAU MEDIA SOSIAL (DIPERBAIKI) ===== -->
-    <meta property="og:title" content="{{ page.title | escape }}" />
-    <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="{{ page.url | absolute_url }}" />
-    <meta property="og:site_name" content="PKC PMII Bali Nusra" />
     
     {%- comment -%}
-    <!-- ================================================================== -->
-    <!-- LOGIKA PENGAMBILAN GAMBAR DIKEMBALIKAN KE VERSI ASLI SESUAI PERMINTAAN -->
-    <!-- ================================================================== -->
+    ==================================================================
+    PERUBAHAN UTAMA:
+    Semua tag meta manual (og:title, og:image, twitter:card, dll.)
+    telah DIHAPUS. Kita ganti semuanya dengan satu baris di bawah ini.
+    Plugin 'jekyll-seo-tag' akan membuat semua tag itu secara otomatis
+    berdasarkan _config.yml dan front matter setiap halaman.
+    ==================================================================
     {%- endcomment -%}
-    {% if page.image %}
-      <!-- Logika untuk menangani URL absolut dan path relatif -->
-      {% if page.image contains "://" %}
-        {% assign final_image_url = page.image %}
-      {% else %}
-        {% assign final_image_url = site.url | append: site.baseurl | append: '/assets/rilis/' | append: page.image %}
-      {% endif %}
-      <meta property="og:image" content="{{ final_image_url }}" />
-      <meta name="twitter:image" content="{{ final_image_url }}">
-    {% else %}
-      <!-- Gambar fallback jika tidak ada gambar di post -->
-      <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
-      <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/logo1.png" />
-    {% endif %}
     
-    <!-- Menambahkan tag ukuran gambar untuk membantu Facebook/WhatsApp -->
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ page.title | escape }}">
-    <meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}">
-    <!-- ===== AKHIR META TAG OPEN GRAPH ===== -->
+    {% seo %}
 
     <!-- Ikon, Font, dan Library Eksternal -->
     <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
