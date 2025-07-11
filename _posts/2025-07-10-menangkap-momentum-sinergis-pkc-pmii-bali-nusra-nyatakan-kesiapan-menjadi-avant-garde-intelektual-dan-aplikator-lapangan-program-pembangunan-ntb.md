@@ -4,7 +4,7 @@ title: "Menangkap Momentum Sinergis: PKC PMII Bali Nusra Nyatakan Kesiapan Menja
 date: 2025-07-10 15:39:32 +0800
 author: "PKC PMII Bali Nusra"
 image: "https://raw.githubusercontent.com/websitepmiibalinusra/websitepmiibalinusra.github.io/main/assets/rilis/menangkap-momentum-sinergis-pkc-pmii-bali-nusra-nyatakan-kesiapan-menjadi-avant-garde-intelektual-dan-aplikator-lapangan-program-pembangunan-ntb.png"
-image_caption: "Ketua PKC dalam Penyerahan Bantuan Korban Banjir Mataram"
+image_caption: "Foto Bersama Ketua PW IKA PMII NTB, Ketua PB IKA PMII, PKC PMII Bali Nusra"
 ---
 
 MATARAM, NTB – Menanggapi konvergensi visi yang luar biasa antara pimpinan Ikatan Alumni Pergerakan Mahasiswa Islam Indonesia (IKA PMII) dan Pemerintah Provinsi NTB dalam acara pelantikan di Lombok Raya Hotel, Ketua Pengurus Koordinator Cabang (PKC) PMII Bali Nusra, Sahabat Ahmad Muzakkir, menyatakan kesiapan penuh dari kader-kader aktif untuk menjadi garda terdepan dalam implementasi agenda pembangunan daerah.
